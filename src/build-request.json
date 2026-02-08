@@ -1,49 +1,72 @@
 {
   "kind": "build_request",
-  "title": "Replace non-loading GIFs on specific Valentine flow screens with new Tenor URLs",
+  "title": "Create a brand-new IC canister and redeploy to fix “Canister ID Not Resolved”",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-27",
-      "text": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
-      "target": "frontend",
+      "id": "REQ-1",
+      "text": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-5"
+          "recent-messages"
         ],
         "quotes": [
-          "First  third fourth sixth seventh and last screen not loading gif change them to \nhttps://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif\n https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif\nhttps://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif\nhttps://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449\nhttps://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif\nhttps://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif\n\nAdd these gif where gif not loading"
+          "Create a new brand new canister",
+          "You are mad 😡 just give me my draft link to share to my partner and that's enough",
+          "Opening the shared app URL returns “Canister ID Not Resolved”; requires creating a brand-new canister and redeploying to get a valid URL."
         ]
       },
       "acceptanceCriteria": [
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.welcomeGif (screen 1: welcome) to exactly: https://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif",
-        "In frontend/src/features/valentine/content/assets.ts, set the GIF used by the 3rd screen (congratulations) to exactly: https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif",
-        "The 4th screen (gifts / ChooseYourGiftScreen) uses a dedicated GIF URL that is exactly: https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif (do not reuse the congratulations GIF for this screen)",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.kissGif (screen 6: gift2) to exactly: https://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.gift3Gif (screen 7: gift3) to exactly: https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.finalSurpriseGif (last screen: finalSurprise) to exactly: https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif",
-        "All affected screens display their GIF using the existing ValentineGif error-handling behavior (fallback text shows if the image fails to load), and no user-facing text is changed away from English."
+        "A fresh canister ID is created and used for the deployment (the previous broken canister ID is not referenced).",
+        "The deployed URL loads the frontend successfully in a browser without showing “Canister ID Not Resolved” / Error 400.",
+        "A shareable URL is produced that includes a valid canister subdomain (e.g., https://<canister-id>.icp0.io/) and works when opened on another device/network."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "This will be automatically set during deployment",
+          "Opening the shared app URL returns “Canister ID Not Resolved”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/src/canisterId.ts no longer uses `await` in a non-async function; canister ID resolution compiles and runs correctly.",
+        "When env.json is present at /env.json, the frontend uses BACKEND_CANISTER_ID from that file; otherwise it falls back to VITE_BACKEND_CANISTER_ID or VITE_CANISTER_ID_BACKEND.",
+        "If no canister ID is available, the app fails gracefully with clear console output rather than a hard crash."
       ]
     }
   ],
   "constraints": [
-    "Frontend files under frontend/src/components/ui and the immutable hook/bootstrapping paths listed in SYSTEM_CONTEXT.frontend.immutablePaths must not be edited.",
-    "Keep the existing Valentine flow order and navigation behavior unchanged except for updating the GIF sources for the specified screens."
+    "Backend must remain a single Motoko actor in backend/main.mo (no multi-canister backend architecture).",
+    "Do not modify files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Do not add new screens or change screen order.",
-    "Do not change quiz questions/answers, music behavior, falling-hearts animation, or other Valentine UI content beyond the GIF source updates requested."
+    "Adding new Valentine app features or changing existing Valentine flow content beyond what is required for deployment/canister-ID correctness.",
+    "Integrating third-party auth providers (only Internet Identity is supported).",
+    "Introducing external databases or non-Motoko backend services."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
   },
   "userProfileUpdate": {
-    "goalsToAdd": [],
+    "goalsToAdd": [
+      "Obtain a working shareable draft/public URL for the deployed app by recreating the canister and redeploying."
+    ],
     "goalsToRemove": [],
     "preferencesToAdd": [],
     "preferencesToRemove": [],
-    "miscToAdd": [],
+    "miscToAdd": [
+      "Current shared URL shows ICP gateway Error 400: “Canister ID Not Resolved” and must be fixed via a fresh canister ID + redeploy."
+    ],
     "miscToRemove": [],
     "fieldsToSet": {},
     "fieldsToDelete": []

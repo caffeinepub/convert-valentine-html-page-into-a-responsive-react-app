@@ -44,6 +44,7 @@ export function Gift1QuestionScreen({ onNavigate }: Gift1QuestionScreenProps) {
   };
 
   const question = STRINGS.quizQuestions[currentQuestion];
+  const currentQuestionGif = ASSETS.quizQuestionGifs[currentQuestion] || ASSETS.roseGif;
 
   return (
     <ValentineLayout>
@@ -56,8 +57,8 @@ export function Gift1QuestionScreen({ onNavigate }: Gift1QuestionScreenProps) {
         
         <div className="my-4">
           <ValentineGif
-            src={ASSETS.roseGif}
-            alt="Rose GIF"
+            src={currentQuestionGif}
+            alt={`Question ${currentQuestion + 1} GIF`}
             fallbackText={STRINGS.quizGifFallback}
             className="h-auto w-48 rounded-2xl"
           />
@@ -102,7 +103,7 @@ export function Gift1QuestionScreen({ onNavigate }: Gift1QuestionScreenProps) {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl text-pink-600 dark:text-pink-400">
-              🎉 {STRINGS.correctAnswerMessage}
+              {STRINGS.correctAnswerMessage}
             </DialogTitle>
             <DialogDescription className="text-center text-lg">
               {currentQuestion < STRINGS.quizQuestions.length - 1 

@@ -6,11 +6,12 @@ import { ChooseYourGiftScreen } from './screens/ChooseYourGiftScreen';
 import { Gift1QuestionScreen } from './screens/Gift1QuestionScreen';
 import { Gift2MessageScreen } from './screens/Gift2MessageScreen';
 import { Gift3ImagesScreen } from './screens/Gift3ImagesScreen';
+import { CuddleHugScreen } from './screens/CuddleHugScreen';
 import { FinalSurpriseScreen } from './screens/FinalSurpriseScreen';
 import { FallingHeartsLayer } from './components/FallingHeartsLayer';
 import { BackgroundMusicControl } from './components/BackgroundMusicControl';
 
-export type Screen = 'welcome' | 'valentine' | 'congratulations' | 'gifts' | 'gift1' | 'gift2' | 'gift3' | 'finalSurprise';
+export type Screen = 'welcome' | 'valentine' | 'congratulations' | 'gifts' | 'gift1' | 'gift2' | 'gift3' | 'cuddleHug' | 'finalSurprise';
 
 export function ValentineFlow() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('welcome');
@@ -31,6 +32,7 @@ export function ValentineFlow() {
       {currentScreen === 'gift1' && <Gift1QuestionScreen onNavigate={navigateTo} />}
       {currentScreen === 'gift2' && <Gift2MessageScreen onNavigate={navigateTo} />}
       {currentScreen === 'gift3' && <Gift3ImagesScreen onNavigate={navigateTo} />}
+      {currentScreen === 'cuddleHug' && <CuddleHugScreen onNavigate={navigateTo} />}
       {currentScreen === 'finalSurprise' && <FinalSurpriseScreen onNavigate={navigateTo} />}
     </div>
   );

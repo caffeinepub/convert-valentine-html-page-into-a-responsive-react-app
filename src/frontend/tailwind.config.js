@@ -100,11 +100,22 @@ export default {
                         opacity: '0.6',
                     },
                 },
+                'float-in': {
+                    '0%': {
+                        transform: 'translateY(30px)',
+                        opacity: '0',
+                    },
+                    '100%': {
+                        transform: 'translateY(0)',
+                        opacity: '1',
+                    },
+                },
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 fall: 'fall linear forwards',
+                'float-in': 'float-in 1s ease-out forwards',
             }
         }
     },

@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Fix Valentine flow screens with non-loading GIFs by updating their GIF URLs to the user-provided Tenor links.
+**Goal:** Restore a working, shareable Internet Computer deployment by creating a fresh canister and ensuring the frontend reliably targets the newly deployed backend canister ID.
 
 **Planned changes:**
-- Update the configured GIF URL for screen 1 (welcome) to the provided Tenor URL.
-- Update the configured GIF URL for screen 3 (congratulations) to the provided Tenor URL.
-- Set a dedicated GIF URL for screen 4 (gifts / ChooseYourGiftScreen) to the provided Tenor URL (separate from screen 3).
-- Update the configured GIF URLs for screen 6 (gift2 / kissGif), screen 7 (gift3 / gift3Gif), and the last screen (finalSurprise / finalSurpriseGif) to the provided Tenor URLs.
-- Keep the existing ValentineGif error-handling behavior and keep flow order/navigation unchanged.
+- Create a brand-new IC canister (do not reuse the broken/invalid canister ID) and redeploy the full app so the public URL resolves without ICP gateway “Canister ID Not Resolved” / Error 400.
+- Fix frontend canister ID resolution logic so it compiles and runs correctly (no `await` in non-async functions) and reads the backend canister ID from `/env.json` when available, otherwise falls back to Vite env variables.
+- Add graceful failure behavior when no canister ID is available (clear console output instead of a hard crash).
 
-**User-visible outcome:** The previously broken GIFs on the specified Valentine flow screens load and display correctly (with the existing fallback behavior if a GIF fails to load).
+**User-visible outcome:** A new shareable `https://<canister-id>.icp0.io/` link loads successfully on other devices/networks and the app connects to the newly deployed backend without canister-ID resolution errors.

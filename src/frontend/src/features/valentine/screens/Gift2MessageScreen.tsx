@@ -20,7 +20,7 @@ export function Gift2MessageScreen({ onNavigate }: Gift2MessageScreenProps) {
         
         <div className="my-4">
           <ValentineGif
-            src={ASSETS.kissGif}
+            src={ASSETS.gift2MessageGif}
             alt="Kiss GIF"
             fallbackText={STRINGS.kissGifFallback}
           />

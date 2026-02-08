@@ -58,7 +58,7 @@ export const STRINGS = {
     {
       question: 'When did we have our first kiss 💋',
       options: ['a) 16 November 2020', 'b) 18 November 2020', 'c) 16 December 2021', 'd) 19 November 2021'],
-      correctAnswer: 0, // a) 16 November 2020
+      correctAnswer: 1, // b) 18 November 2020 - CORRECTED
     },
   ],
   correctAnswerMessage: 'Wow, you are intelligent.',
@@ -79,6 +79,10 @@ export const STRINGS = {
   // Gift 3
   gift3Title: 'I LOVEEE UUUU BABY 💗\nMORE THAN ANYTHING 🌸✨❤️\nFOREVER AND EVER ❤️😘',
   memoriesGifFallback: '📸 Memories',
+  
+  // Cuddle/Hug screen
+  cuddleHugText: 'APOORVA LOVES 😘💞 SHIVA',
+  cuddleHugGifFallback: '🤗 Cuddle & Hug',
   
   // Final Surprise screen
   finalSurpriseTitle: 'Final Surprise Baby ❤️✨',

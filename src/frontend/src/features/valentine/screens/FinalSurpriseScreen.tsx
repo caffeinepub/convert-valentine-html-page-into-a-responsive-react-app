@@ -40,10 +40,11 @@ export function FinalSurpriseScreen({ onNavigate }: FinalSurpriseScreenProps) {
         </h2>
         
         <div className="relative my-6">
-          <img
-            src={ASSETS.surpriseBoxImage}
+          <ValentineGif
+            src={ASSETS.surpriseBoxGif}
             alt="Surprise Box"
-            className="h-auto w-44 cursor-pointer transition-transform duration-300 hover:scale-110 active:scale-95"
+            className="h-auto w-44"
+            fallbackText="🎁 Click me!"
             onClick={handleSurpriseBoxClick}
           />
         </div>

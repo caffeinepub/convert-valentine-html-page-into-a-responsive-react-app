@@ -1,231 +1,28 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 21,
-  "summary": "Build a responsive React project version of the provided \"Valentine Journey\" interactive webpage (multi-page flow with animations like floating hearts + glitter burst, popups, audio, and GIF/images).",
+  "projectStateVersion": 3,
+  "summary": "Project involves deploying an Internet Computer (icp0.io) canister and providing a shareable draft/live URL; current deployments produce an unresolvable/missing canister ID URL.",
   "architectural_notes": [
-    "Implement as a responsive React single-page app with component-based pages and state-driven navigation.",
-    "Support user-configurable media assets (e.g., GIF) via a configurable asset path or upload/selection, and reference it from React state/config rather than hardcoding.",
-    "Prefer stable, direct image URLs (e.g., media.tenor.com *.gif) over Tenor page URLs (tenor.com/view/...) to avoid hotlink/expiry issues; validate GIF URLs per screen in centralized asset config."
+    "Deployment should be able to force creation of a fresh canister ID (not reuse a dead/invalid ID) and return a valid *.icp0.io canister URL."
   ],
   "known_issues": [
-    "Previous deployment/draft expired; site needs rebuild/redeploy to provide a working shareable link.",
-    "Several screens’ Tenor GIFs fail to load (1st, 3rd, 4th, 6th, 7th, last); requires replacing with stable direct GIF URLs."
+    "Deployed URL returns “Canister ID Not Resolved” / appears to lack a valid canister ID, preventing sharing a working draft link."
   ],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-recreate-the-provided-valentine-html-css-js-experience-as-a-responsive-react-typescript-ui-with-tailwind-styling-preserving-the-same-multi-screen-flow-1-will-you-be-my-valentine-screen-with-yes-no-actions-2-choose-your-gift-screen-3-gift-1-question-screen-with-four-choices-4-gift-2-message-screen-5-gift-3-message-two-images-screen-and-6-final-success-screen",
-      "title": "Recreate the provided Valentine HTML/CSS/JS experience as a responsive React + TypeScript UI with Tailwind styling, preserving the same multi-screen flow: (1) “Will You Be My Valentine?” screen with Yes/No actions, (2) “Choose your Gift” screen, (3) Gift 1 question screen with four choices, (4) Gift 2 message screen, (5) Gift 3 message + two images screen, and (6) final success screen.",
+      "id": "feature-create-a-brand-new-internet-computer-canister-do-not-reuse-the-existing-invalid-canister-id-and-redeploy-the-full-app-so-the-resulting-public-url-resolves-successfully-no-icp-gateway-canister-id-not-resolved-error-400-and-can-be-shared-as-a-working-draft-link",
+      "title": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-falling-hearts-animation-as-a-react-friendly-effect-no-direct-dom-scripting-outside-react-lifecycle-matching-the-original-behavior-hearts-spawn-periodically-at-random-horizontal-positions-fall-down-the-viewport-with-varying-durations-and-get-cleaned-up-after-they-finish",
-      "title": "Implement the falling-hearts animation as a React-friendly effect (no direct DOM scripting outside React lifecycle), matching the original behavior: hearts spawn periodically at random horizontal positions, fall down the viewport with varying durations, and get cleaned up after they finish.",
+      "id": "feature-fix-frontend-backend-canister-id-resolution-so-it-reliably-reads-the-deployed-backend-canister-id-from-env-json-and-or-vite-environment-variables-without-typescript-runtime-errors-ensuring-the-deployed-frontend-always-points-at-the-newly-created-backend-canister",
+      "title": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-background-music-playback-using-a-bundled-static-audio-asset-with-safe-browser-behavior-provide-a-visible-play-pause-control-and-attempt-autoplay-only-where-allowed-the-music-should-loop-when-playing",
-      "title": "Add background music playback using a bundled static audio asset, with safe browser behavior: provide a visible play/pause control and attempt autoplay only where allowed. The music should loop when playing.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-cohesive-valentine-themed-visual-design-using-tailwind-warm-pink-rose-palette-soft-gradients-rounded-buttons-and-a-playful-typography-pairing-including-a-safe-fallback-if-poppins-is-unavailable-apply-the-theme-consistently-across-all-screens",
-      "title": "Create a cohesive Valentine-themed visual design using Tailwind: warm pink/rose palette, soft gradients, rounded buttons, and a playful typography pairing (including a safe fallback if Poppins is unavailable). Apply the theme consistently across all screens.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-simple-asset-pipeline-for-the-referenced-media-gif-photos-audio-place-assets-under-a-frontend-public-assets-folder-and-update-the-react-ui-to-reference-those-paths-provide-sensible-placeholders-if-user-photos-are-not-available",
-      "title": "Add a simple asset pipeline for the referenced media (GIF + photos + audio): place assets under a frontend public assets folder and update the React UI to reference those paths. Provide sensible placeholders if user photos are not available.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-user-facing-way-to-replace-the-default-couple-gif-on-the-will-you-be-my-valentine-screen-with-a-user-chosen-gif-without-requiring-code-changes",
-      "title": "Add a user-facing way to replace the default couple GIF on the “Will You Be My Valentine?” screen with a user-chosen GIF, without requiring code changes.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-new-first-screen-welcome-before-the-existing-will-you-be-my-valentine-screen-matching-the-user-s-original-html-flow-show-a-welcome-title-message-display-a-rose-gif-image-and-provide-a-single-continue-button-that-navigates-to-the-existing-valentine-question-screen",
-      "title": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-use-the-user-provided-tenor-gif-urls-in-the-react-app-set-the-default-gif-on-the-will-you-be-my-valentine-screen-to-https-media-tenor-com-wguecmjvn1gaaaad-bubu-dudu-hug-gif-and-add-display-the-gift-2-kiss-gif-https-media-tenor-com-tz2d6kitd0gaaaad-bubu-dudu-kisses-gif-on-the-gift-2-message-screen-similarly-to-the-original-html",
-      "title": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-valentineflow-navigation-model-to-include-the-new-welcome-screen-while-preserving-all-existing-screens-animations-falling-hearts-and-background-music-behavior",
-      "title": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-the-existing-just-us-content-section-from-the-valentine-flow-ui-currently-the-subtitle-text-shown-on-the-gift-3-images-screen-so-it-no-longer-renders-anywhere-in-the-app",
-      "title": "Remove the existing “Just Us” content/section from the Valentine flow UI (currently the subtitle text shown on the Gift 3 images screen) so it no longer renders anywhere in the app.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-convert-the-current-gift-1-screen-from-a-single-question-screen-into-an-mcq-quiz-consisting-of-these-5-questions-one-at-a-time-or-all-at-once-is-acceptable-each-with-four-options-a-d-and-with-the-specified-correct-answer-per-question-q1-do-you-want-me-in-your-life-forever-a-yes-b-no-c-never-d-always-correct-d-q2-when-did-our-relationship-start-a-13-december-2020-b-15-november-2021-c-15-november-2020-correct-c-d-20-november-2021-q3-are-you-happy-with-me-a-nooo-b-yes-c-not-sure-d-yes-of-course-correct-d-q4-how-much-do-you-love-me-a-10000-b-unlimited-correct-b-c-0-d-i-don-t-love-you-q5-when-did-we-have-our-first-kiss-a-16-november-2020-b-18-november-2020-correct-b-c-16-december-2021-d-19-november-2021-all-user-facing-text-for-this-quiz-must-be-in-english",
-      "title": "Convert the current Gift 1 screen from a single-question screen into an MCQ quiz consisting of these 5 questions (one-at-a-time or all-at-once is acceptable), each with four options A–D, and with the specified correct answer per question:\n\nQ1: “Do you want me in your life forever ♾️❤️”\nA) “Yes”\nB) “No”\nC) “Never”\nD) “Always”  (Correct: D)\n\nQ2: “When did our relationship start? 😁”\nA) “13 December 2020”\nB) “15 November 2021”\nC) “15 November 2020” (Correct: C)\nD) “20 November 2021”\n\nQ3: “Are you happy with me?”\nA) “Nooo”\nB) “Yes”\nC) “Not sure”\nD) “Yes, of course” (Correct: D)\n\nQ4: “How much do you love me?”\nA) “10000%”\nB) “Unlimited ✨” (Correct: B)\nC) “0%”\nD) “I don’t love you”\n\nQ5: “When did we have our first kiss? 💋”\nA) “16 November 2020”\nB) “18 November 2020” (Correct: B)\nC) “16 December 2021”\nD) “19 November 2021”\n\nAll user-facing text for this quiz must be in English.",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-quiz-answer-feedback-behavior-on-the-gift-1-mcq-quiz-when-the-user-selects-a-wrong-option-show-a-clearly-visible-red-wrong-indicator-e-g-red-x-badge-and-or-red-highlighted-option-and-keep-the-user-on-the-same-question-when-the-user-selects-the-correct-option-show-a-popup-message-that-says-exactly-wow-you-are-intelligent-and-then-advance-to-the-next-question-or-if-it-was-the-final-question-navigate-to-the-existing-success-screen",
-      "title": "Implement quiz answer feedback behavior on the Gift 1 MCQ quiz: when the user selects a wrong option, show a clearly visible red wrong indicator (e.g., red X/badge and/or red-highlighted option) and keep the user on the same question; when the user selects the correct option, show a popup message that says exactly: “Wow, you are intelligent.” and then advance to the next question (or, if it was the final question, navigate to the existing Success screen).",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-refactor-the-valentine-text-constants-to-support-the-new-gift-1-quiz-content-and-feedback-messages-centralizing-the-new-quiz-strings-in-the-existing-strings-module-and-removing-retiring-the-old-gift-1-single-question-option-strings-that-are-no-longer-used",
-      "title": "Refactor the Valentine text constants to support the new Gift 1 quiz content and feedback messages, centralizing the new quiz strings in the existing strings module and removing/retiring the old Gift 1 single-question option strings that are no longer used.",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-persistent-back-and-next-navigation-controls-below-the-main-content-on-every-valentine-flow-screen-welcome-will-you-be-my-valentine-choose-your-gift-gift-1-quiz-gift-2-message-gift-3-images-success-so-users-can-move-sequentially-through-the-screens",
-      "title": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-display-a-gif-on-every-valentine-flow-screen-including-screens-that-currently-do-not-show-a-gif-choose-your-gift-gift-1-quiz-gift-3-images-success-using-the-existing-asset-pipeline-and-safe-fallback-behavior-if-a-gif-fails-to-load",
-      "title": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-centralized-strings-module-to-include-any-new-english-user-facing-text-introduced-by-the-back-next-controls-and-any-new-gif-fallback-labels-used-on-newly-updated-screens",
-      "title": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-valentine-flow-to-match-the-provided-html-page-sequence-by-adding-a-dedicated-congratulations-screen-between-the-valentine-question-screen-and-the-gifts-screen-with-the-exact-headings-congratulations-my-love-and-you-won-my-heart-an-open-gifts-primary-button-that-navigates-to-the-gifts-screen-and-back-next-controls-that-follow-the-linear-flow",
-      "title": "Update the Valentine flow to match the provided HTML page sequence by adding a dedicated “Congratulations” screen between the Valentine question screen and the Gifts screen, with the exact headings “🎉 Congratulations My Love ❤️” and “You won my heart 😘”, an “Open Gifts 🎁” primary button that navigates to the Gifts screen, and Back/Next controls that follow the linear flow.",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-the-final-surprise-interaction-from-the-provided-html-by-adding-a-new-final-final-surprise-baby-screen-that-displays-a-gif-shows-the-prompt-click-the-surprise-box-renders-the-clickable-surprise-box-image-https-cdn-icons-png-flaticon-com-512-4208-4208394-png-and-on-click-reveals-the-pop-up-message-with-a-pop-out-animation-and-triggers-a-short-glitter-sparkle-burst-effect",
-      "title": "Implement the final surprise interaction from the provided HTML by adding a new final “Final Surprise Baby ❤️✨” screen that displays a GIF, shows the prompt “Click the Surprise Box 🎁👇”, renders the clickable surprise box image (https://cdn-icons-png.flaticon.com/512/4208/4208394.png), and on click reveals the pop-up message with a pop-out animation and triggers a short glitter/sparkle burst effect.",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-valentine-flow-navigation-model-and-types-to-include-the-new-screens-and-to-match-the-html-ordering-welcome-valentine-question-congratulations-gift-1-quiz-gift-2-message-gift-3-final-surprise-ensure-the-existing-back-next-controls-continue-to-work-across-all-screens-in-this-updated-order",
-      "title": "Update the Valentine flow navigation model and types to include the new screens and to match the HTML ordering: Welcome → Valentine Question → Congratulations → Gift 1 Quiz → Gift 2 Message → Gift 3 → Final Surprise. Ensure the existing Back/Next controls continue to work across all screens in this updated order.",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-centralized-asset-configuration-so-the-app-uses-the-exact-gif-urls-from-the-user-provided-html-for-the-corresponding-screens-welcome-gif-https-media-tenor-com-tzkz0cuxr2aaaaam-bubu-dudu-love-gif-valentine-question-gif-https-media-tenor-com-et2ymlk4c9oaaaam-bubu-dudu-gif-congratulations-gif-https-media-tenor-com-jeyyu6zqymmaaaam-bubu-dudu-hug-gif-gift-1-gif-https-media-tenor-com-zegzqseuxbiaaaam-bubu-dudu-love-gif-gift-2-gif-https-media-tenor-com-8d4thulicl0aaaam-bubu-dudu-kiss-gif-gift-3-gif-https-media-tenor-com-u4e7b7c9zwqaaaam-dudu-and-bubu-gif-final-surprise-gif-https-media-tenor-com-z-m1hu8z2n4aaaam-bubu-dudu-gif",
-      "title": "Update the centralized asset configuration so the app uses the exact GIF URLs from the user-provided HTML for the corresponding screens: Welcome GIF https://media.tenor.com/tZkz0CuxR2AAAAAM/bubu-dudu-love.gif; Valentine question GIF https://media.tenor.com/eT2ymlk4C9oAAAAM/bubu-dudu.gif; Congratulations GIF https://media.tenor.com/jEyyU6zQymMAAAAM/bubu-dudu-hug.gif; Gift 1 GIF https://media.tenor.com/zeGZqSEuxbIAAAAM/bubu-dudu-love.gif; Gift 2 GIF https://media.tenor.com/8D4tHULICL0AAAAM/bubu-dudu-kiss.gif; Gift 3 GIF https://media.tenor.com/U4E7B7C9ZwQAAAAM/dudu-and-bubu.gif; Final Surprise GIF https://media.tenor.com/Z_M1hU8Z2n4AAAAM/bubu-dudu.gif.",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-change-the-behavior-of-the-valentine-question-screen-s-no-action-to-match-the-provided-html-each-press-of-no-should-increase-the-visual-size-e-g-font-size-scale-of-the-yes-button-progressively-instead-of-showing-an-alert",
-      "title": "Change the behavior of the Valentine question screen’s “No” action to match the provided HTML: each press of “No” should increase the visual size (e.g., font size / scale) of the “Yes” button progressively, instead of showing an alert.",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-all-user-facing-quiz-strings-are-written-in-english-with-consistent-capitalization-and-phrasing-aligning-the-gift-1-quiz-content-with-the-provided-html-s-five-questions-while-keeping-the-existing-correct-answer-feedback-message-exactly-wow-you-are-intelligent",
-      "title": "Ensure all user-facing quiz strings are written in English with consistent capitalization and phrasing, aligning the Gift 1 quiz content with the provided HTML’s five questions while keeping the existing correct-answer feedback message exactly “Wow, you are intelligent.”.",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-the-photo-images-section-from-the-valentine-flow-ui-so-that-no-user-photos-are-displayed-anywhere-in-the-app-specifically-removing-the-two-memory-images-currently-rendered-on-the-gift-3-screen",
-      "title": "Remove the photo/images section from the Valentine flow UI so that no user photos are displayed anywhere in the app, specifically removing the two memory images currently rendered on the Gift 3 screen.",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-clean-up-unused-photo-asset-references-after-removing-the-photo-section-ensure-the-frontend-codebase-no-longer-imports-or-references-the-removed-photo-assets-from-the-centralized-asset-configuration",
-      "title": "Clean up unused photo asset references after removing the photo section: ensure the frontend codebase no longer imports or references the removed photo assets from the centralized asset configuration.",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-only-the-gif-image-corresponding-to-the-selected-element-xpath-html-1-body-1-div-1-div-1-div-3-div-1-div-1-div-1-div-1-img-1-so-it-uses-this-exact-url-as-its-src-https-media-tenor-com-az12yafzvwwaaaai-bubu-dudu-prince-bubu-dudu-princess-gif-in-the-current-code-this-should-be-achieved-by-updating-the-gif-source-used-by-the-screen-component-that-renders-that-selected-img-currently-the-gift-3-gif-sourced-from-assets-gift3gif-used-in-gift3imagesscreen",
-      "title": "Update ONLY the GIF image corresponding to the selected element (XPath: /html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/img[1]) so it uses this exact URL as its src: https://media.tenor.com/AZ12YafzVwwAAAAi/bubu-dudu-prince-bubu-dudu-princess.gif. In the current code, this should be achieved by updating the GIF source used by the screen/component that renders that selected <img> (currently the Gift 3 GIF sourced from ASSETS.gift3Gif used in Gift3ImagesScreen).",
-      "reqIds": [
-        "REQ-25"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-only-the-gif-image-corresponding-to-the-selected-element-xpath-html-1-body-1-div-1-div-1-div-3-div-1-div-1-div-1-div-1-img-1-so-it-uses-this-exact-url-as-its-src-https-media-tenor-com-owtgv7xphy4aaaai-sseeyall-bubu-dudu-gif-in-the-current-code-achieve-this-by-updating-the-gif-source-used-by-the-screen-component-that-renders-that-selected-img-gift3imagesscreen-uses-src-assets-gift3gif-so-assets-gift3gif-points-to-the-new-url",
-      "title": "Update ONLY the GIF image corresponding to the selected element (XPath: /html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/img[1]) so it uses this exact URL as its src: https://media.tenor.com/oWTGv7XpHY4AAAAi/sseeyall-bubu-dudu.gif. In the current code, achieve this by updating the GIF source used by the screen/component that renders that selected <img> (Gift3ImagesScreen uses src={ASSETS.gift3Gif}), so ASSETS.gift3Gif points to the new URL.",
-      "reqIds": [
-        "REQ-26"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-gif-sources-for-the-screens-the-user-reported-as-not-loading-1st-3rd-4th-6th-7th-and-last-screens-in-the-current-flow-order-by-replacing-the-configured-gif-urls-with-the-exact-user-provided-urls-and-ensure-each-affected-screen-renders-its-updated-gif",
-      "title": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
-      "reqIds": [
-        "REQ-27"
       ],
       "version": 1
     }
@@ -233,79 +30,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Convert the provided Valentine HTML/CSS/JS page into a responsive React project (components, navigation between pages, falling hearts animation, audio, and assets).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Allow replacing the default bear-couple GIF with a user-chosen GIF (provide a configurable asset path or upload/selection mechanism and update UI to use it).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Add the requested Bubu Dudu Rose GIF to the first (welcome) page in addition to the existing Hug (Page 2) and Kiss (Page 5) GIFs.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Rebuild and redeploy the Valentine website to provide a clean, shareable public URL (shared-link website).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Replace the existing \"Just Us\" section with an MCQ questions section (likely on Gift 1 screen): present provided questions/options, track correct answers, show a visible red indicator on wrong choice, and show a \"woww you are intelligent\" popup on correct choice.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Add Back/Next navigation controls on each page (below the content) to allow moving through the multi-page flow sequentially.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Add/display a GIF on each page/screen of the Valentine flow (ensure every page includes an appropriate GIF element).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Implement the final surprise interaction from the provided HTML: clickable surprise box that reveals a pop-up message with a pop-out animation and triggers a short glitter/sparkle burst effect.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Remove the photo/images section from the Valentine flow UI (do not show the photo section anywhere, including the Gift 3 images screen if present).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Update the app’s relevant default GIF to use https://media.tenor.com/AZ12YafzVwwAAAAi/bubu-dudu-prince-bubu-dudu-princess.gif (replacing the currently configured GIF URL).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Update the app’s relevant GIF asset to use the newly provided Tenor URL: https://media.tenor.com/oWTGv7XpHY4AAAAi/sseeyall-bubu-dudu.gif (replace the currently configured GIF on the intended screen).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Fix GIFs not loading on multiple screens by updating the GIF sources for the 1st, 3rd, 4th, 6th, 7th, and last screens to the user-provided Tenor URLs (replace the non-loading GIFs with the specified links).",
+      "summary": "Create a brand-new IC canister and redeploy to generate a working shareable draft URL",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Convert Valentine HTML page into a responsive React app",
+  "projectName": "Create a brand-new IC canister and redeploy to fix “Canister ID Not Resolved”",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

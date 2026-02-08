@@ -9,12 +9,26 @@ export const ASSETS = {
   giftsGif: 'https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif',
   roseGif: 'https://media.tenor.com/zeGZqSEuxbIAAAAM/bubu-dudu-love.gif',
   hugGif: 'https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif',
-  kissGif: 'https://media.tenor.com/n_bduIR_bJMAAAAi/bubu-dudu-stickers-cute.gif',
   gift3Gif: 'https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif',
   finalSurpriseGif: 'https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif',
   
-  // Final Surprise box image
-  surpriseBoxImage: 'https://cdn-icons-png.flaticon.com/4208/4208394.png',
+  // Gift 2 Message GIF (5th page) - Updated to new GIF
+  gift2MessageGif: 'https://media.tenor.com/8Xxc-MCPxOAAAAAi/sseeyall-bubu-dudu.gif',
+  
+  // Cuddle/Hug screen GIF - Updated to exact user-provided URL
+  cuddleHugGif: 'https://tenor.com/view/bubu-dudu-bride-dancing-excited-gif-6374626551317323786',
+  
+  // Gift 1 Quiz per-question GIFs
+  quizQuestionGifs: [
+    'https://media.tenor.com/tnTcMaEkXzAAAAAi/tonibear-bubu.gif',      // Q1
+    'https://media.tenor.com/dALFjscRSeYAAAAi/bubu-dudu-sseeyall.gif', // Q2
+    'https://media.tenor.com/BKP6erkQWjMAAAAi/bubu-dudu-sseeyall.gif', // Q3
+    'https://media.tenor.com/KtaMrc5ZcH4AAAAi/bubu-dudu-sseeyall.gif', // Q4
+    'https://media.tenor.com/VqT0Rp-x0hcAAAAi/bubu-dudu-sseeyall.gif', // Q5
+  ],
+  
+  // Final Surprise box GIF
+  surpriseBoxGif: 'https://media.tenor.com/Myfbtk1gOAgAAAAi/h%E1%BB%99p-qu%C3%A0-h%C3%A0ng-rong.gif',
   
   // Music
   music: '/assets/music.mp3',

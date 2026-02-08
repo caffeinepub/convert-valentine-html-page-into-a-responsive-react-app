@@ -1,26 +1,41 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T08:23:38.057Z",
+  "generatedAt": "2026-02-08T10:10:18.087Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-27",
-        "summary": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
+        "id": "REQ-1",
+        "summary": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/features/valentine/content/assets.ts",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
+          "frontend/DEPLOYMENT_DRAFT_LINK.md",
+          "frontend/.env.example"
         ],
         "matchedFiles": [
-          "frontend/src/features/valentine/content/assets.ts",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
+          "frontend/DEPLOYMENT_DRAFT_LINK.md",
+          "frontend/.env.example"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/canisterId.ts",
+          "frontend/src/main.tsx",
+          "frontend/src/config.ts",
+          "frontend/src/hooks/useActor.ts",
+          "frontend/src/hooks/useInternetIdentity.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/canisterId.ts"
         ]
       }
     ]
@@ -30,8 +45,9 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/features/valentine/content/assets.ts",
-    "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+    "frontend/.env.example",
+    "frontend/DEPLOYMENT_DRAFT_LINK.md",
+    "frontend/src/canisterId.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

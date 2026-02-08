@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-gif-sources-for-the-screens-the-user-reported-as-not-loading-1st-3rd-4th-6th-7th-and-last-screens-in-the-current-flow-order-by-replacing-the-configured-gif-urls-with-the-exact-user-provided-urls-and-ensure-each-affected-screen-renders-its-updated-gif",
-      "featureTitle": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
+      "featureId": "feature-create-a-brand-new-internet-computer-canister-do-not-reuse-the-existing-invalid-canister-id-and-redeploy-the-full-app-so-the-resulting-public-url-resolves-successfully-no-icp-gateway-canister-id-not-resolved-error-400-and-can-be-shared-as-a-working-draft-link",
+      "featureTitle": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
       "files": [
-        "frontend/src/features/valentine/content/assets.ts",
-        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
+        "frontend/.env.example",
+        "frontend/DEPLOYMENT_DRAFT_LINK.md"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,7 +16,25 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-27"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-frontend-backend-canister-id-resolution-so-it-reliably-reads-the-deployed-backend-canister-id-from-env-json-and-or-vite-environment-variables-without-typescript-runtime-errors-ensuring-the-deployed-frontend-always-points-at-the-newly-created-backend-canister",
+      "featureTitle": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+      "files": [
+        "frontend/src/canisterId.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

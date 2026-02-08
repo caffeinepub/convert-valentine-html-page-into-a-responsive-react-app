@@ -1,30 +1,62 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace broken Valentine flow GIF URLs with user-provided Tenor links",
+  "title": "Fix frontend canister ID resolution for reliable IC redeploy/shareable URL",
   "requirements": [
     {
-      "id": "REQ-27",
-      "summary": "Replace non-loading GIF URLs on the specified Valentine flow screens (1st, 3rd, 4th, 6th, 7th, last) with the exact user-provided Tenor URLs while keeping flow/navigation and error-handling unchanged.",
+      "id": "REQ-1",
+      "summary": "Ensure the frontend build/deploy process does not reference any previous broken canister ID and provides clear redeploy guidance for producing a fresh, shareable IC URL.",
       "acceptanceCriteria": [
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.welcomeGif (screen 1: welcome) to exactly: https://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif",
-        "In frontend/src/features/valentine/content/assets.ts, set the GIF used by the 3rd screen (congratulations) to exactly: https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif",
-        "The 4th screen (gifts / ChooseYourGiftScreen) uses a dedicated GIF URL that is exactly: https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif (do not reuse the congratulations GIF for this screen)",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.kissGif (screen 6: gift2) to exactly: https://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.gift3Gif (screen 7: gift3) to exactly: https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif",
-        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.finalSurpriseGif (last screen: finalSurprise) to exactly: https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif",
-        "All affected screens display their GIF using the existing ValentineGif error-handling behavior (fallback text shows if the image fails to load), and no user-facing text is changed away from English."
+        "A fresh canister ID is created and used for the deployment (the previous broken canister ID is not referenced).",
+        "The deployed URL loads the frontend successfully in a browser without showing “Canister ID Not Resolved” / Error 400.",
+        "A shareable URL is produced that includes a valid canister subdomain (e.g., https://<canister-id>.icp0.io/) and works when opened on another device/network."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/features/valentine/content/assets.ts",
-          "operation": "modify",
-          "description": "Update the configured Tenor GIF URLs to the exact user-provided URLs for: ASSETS.welcomeGif (welcome), ASSETS.congratulationsGif (congratulations), ASSETS.kissGif (gift2), ASSETS.gift3Gif (gift3), and ASSETS.finalSurpriseGif (finalSurprise). Add a new dedicated asset key for the gifts screen GIF (e.g., ASSETS.giftsGif) set to exactly https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif so the gifts screen does not reuse the congratulations GIF."
+          "path": "frontend/DEPLOYMENT_DRAFT_LINK.md",
+          "operation": "create",
+          "description": "Add a short redeploy checklist focused on producing a fresh canister ID and ensuring the frontend is configured to read the new ID at runtime (e.g., via /env.json and Vite env vars), so the shared URL resolves. Reference the app’s runtime canister-id resolution behavior and where to verify it after redeploy."
         },
         {
-          "path": "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+          "path": "frontend/.env.example",
           "operation": "modify",
-          "description": "Wire the gifts screen to use the new dedicated gifts GIF asset (e.g., ASSETS.giftsGif) instead of ASSETS.congratulationsGif, ensuring it continues to render via the existing ValentineGif component (preserving current error-handling and fallback behavior) and without changing any user-facing text."
+          "description": "Clarify the intended env var names and that values must come from the newly created deployment (do not paste/keep any previously broken canister ID). Keep user-facing text in English."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Make frontend backend-canister-ID resolution robust by correctly loading BACKEND_CANISTER_ID from /env.json with Vite env var fallbacks, avoiding TypeScript/runtime errors and failing gracefully when missing.",
+      "acceptanceCriteria": [
+        "frontend/src/canisterId.ts no longer uses `await` in a non-async function; canister ID resolution compiles and runs correctly.",
+        "When env.json is present at /env.json, the frontend uses BACKEND_CANISTER_ID from that file; otherwise it falls back to VITE_BACKEND_CANISTER_ID or VITE_CANISTER_ID_BACKEND.",
+        "If no canister ID is available, the app fails gracefully with clear console output rather than a hard crash."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/canisterId.ts",
+          "operation": "modify",
+          "description": "Refactor canister ID resolution to eliminate `await` in non-async functions by introducing an async initialization/loader for /env.json and a safe synchronous accessor that uses cached values and Vite env var fallbacks. Add clear console warnings/errors when no ID is available, without throwing uncaught errors at module-evaluation time."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Initialize runtime configuration early (before app render) so /env.json can be read when available and cached for later synchronous access. Ensure missing config does not hard-crash the app; leave clear console output for debugging redeploys."
+        },
+        {
+          "path": "frontend/src/config.ts",
+          "operation": "modify",
+          "description": "Update the core configuration loader (provided by the core-infrastructure component) to use the improved canister-id resolution behavior, ensuring actor/config creation consistently points to the newly deployed backend canister. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Add a guard so actor creation does not proceed when the backend canister ID is missing/empty; instead return a null actor state and log a clear console message. This prevents runtime crashes and makes misconfiguration obvious after deployment."
+        },
+        {
+          "path": "frontend/src/hooks/useInternetIdentity.ts",
+          "operation": "modify",
+          "description": "Ensure config loading for Internet Identity initialization remains compatible with the updated runtime config/canister-id loading (e.g., handle config-load errors gracefully and avoid cascading failures when canister ID is temporarily unavailable)."
         }
       ]
     }
