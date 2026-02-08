@@ -2,14 +2,19 @@ export const ASSETS = {
   // Local fallback GIF
   bubuDudu: '/assets/generated/bubu-dudu.dim_500x500.gif',
   
-  // Tenor GIF URLs
-  roseGif: 'https://media.tenor.com/7052649493461014161/bubu-dudu-rose.gif',
+  // Tenor GIF URLs - Updated with user-provided links
+  welcomeGif: 'https://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif',
+  valentineGif: 'https://media.tenor.com/eT2ymlk4C9oAAAAM/bubu-dudu.gif',
+  congratulationsGif: 'https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif',
+  giftsGif: 'https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif',
+  roseGif: 'https://media.tenor.com/zeGZqSEuxbIAAAAM/bubu-dudu-love.gif',
   hugGif: 'https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif',
-  kissGif: 'https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif',
+  kissGif: 'https://media.tenor.com/n_bduIR_bJMAAAAi/bubu-dudu-stickers-cute.gif',
+  gift3Gif: 'https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif',
+  finalSurpriseGif: 'https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif',
   
-  // Images
-  yourPic1: '/assets/generated/yourpic1.dim_800x800.jpg',
-  yourPic2: '/assets/generated/yourpic2.dim_800x800.jpg',
+  // Final Surprise box image
+  surpriseBoxImage: 'https://cdn-icons-png.flaticon.com/4208/4208394.png',
   
   // Music
   music: '/assets/music.mp3',

@@ -2,18 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-persistent-back-and-next-navigation-controls-below-the-main-content-on-every-valentine-flow-screen-welcome-will-you-be-my-valentine-choose-your-gift-gift-1-quiz-gift-2-message-gift-3-images-success-so-users-can-move-sequentially-through-the-screens",
-      "featureTitle": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
+      "featureId": "feature-update-the-gif-sources-for-the-screens-the-user-reported-as-not-loading-1st-3rd-4th-6th-7th-and-last-screens-in-the-current-flow-order-by-replacing-the-configured-gif-urls-with-the-exact-user-provided-urls-and-ensure-each-affected-screen-renders-its-updated-gif",
+      "featureTitle": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
       "files": [
-        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-        "frontend/src/features/valentine/content/flowOrder.ts",
-        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-        "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-        "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-        "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx"
+        "frontend/src/features/valentine/content/assets.ts",
+        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -23,52 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-14"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-display-a-gif-on-every-valentine-flow-screen-including-screens-that-currently-do-not-show-a-gif-choose-your-gift-gift-1-quiz-gift-3-images-success-using-the-existing-asset-pipeline-and-safe-fallback-behavior-if-a-gif-fails-to-load",
-      "featureTitle": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
-      "files": [
-        "frontend/src/features/valentine/components/ValentineGif.tsx",
-        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-        "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-        "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-        "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-        "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-15"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-centralized-strings-module-to-include-any-new-english-user-facing-text-introduced-by-the-back-next-controls-and-any-new-gif-fallback-labels-used-on-newly-updated-screens",
-      "featureTitle": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
-      "files": [
-        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-        "frontend/src/features/valentine/components/ValentineGif.tsx",
-        "frontend/src/features/valentine/content/strings.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-16"
+        "REQ-27"
       ],
       "confidence": "high"
     }

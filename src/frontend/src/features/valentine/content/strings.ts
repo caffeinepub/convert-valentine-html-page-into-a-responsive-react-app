@@ -11,6 +11,11 @@ export const STRINGS = {
   no: 'No',
   wrongAnswer: 'Wrong Answer 😤 Try again baby!',
   
+  // Congratulations screen
+  congratulationsTitle: '🎉 Congratulations My Love ❤️',
+  congratulationsSubtitle: 'You won my heart 😘',
+  openGifts: 'Open Gifts 🎁',
+  
   // Custom GIF
   changeGif: 'Change GIF',
   gifUrlLabel: 'Enter GIF URL',
@@ -32,28 +37,28 @@ export const STRINGS = {
   quizQuestions: [
     {
       question: 'Do you want me in your life forever ♾️❤️',
-      options: ['a) yess', 'b) No', 'c) Never', 'd) Always'],
+      options: ['a) Yes', 'b) No', 'c) Never', 'd) Always'],
       correctAnswer: 3, // d) Always
     },
     {
-      question: 'When does our relationship starts 😁',
+      question: 'When does our relationship start 😁',
       options: ['a) 13 December 2020', 'b) 15 November 2021', 'c) 15 November 2020', 'd) 20 November 2021'],
       correctAnswer: 2, // c) 15 November 2020
     },
     {
       question: 'Are you happy with me?',
-      options: ['a) nooo', 'b) yess', 'c) not sure', 'd) yes of course'],
-      correctAnswer: 3, // d) yes of course
+      options: ['a) No', 'b) Yes', 'c) Not sure', 'd) Yes, of course'],
+      correctAnswer: 3, // d) Yes, of course
     },
     {
-      question: 'How much you love me?',
-      options: ['a) 10000%', 'b) unlimited ✨', 'c) 0%', 'd) i don\'t love you'],
-      correctAnswer: 1, // b) unlimited ✨
+      question: 'How much do you love me?',
+      options: ['a) 10000%', 'b) Unlimited ✨', 'c) 0%', 'd) I don\'t love you'],
+      correctAnswer: 1, // b) Unlimited ✨
     },
     {
-      question: 'When we have our first kiss 💋',
+      question: 'When did we have our first kiss 💋',
       options: ['a) 16 November 2020', 'b) 18 November 2020', 'c) 16 December 2021', 'd) 19 November 2021'],
-      correctAnswer: 1, // b) 18 November 2020
+      correctAnswer: 0, // a) 16 November 2020
     },
   ],
   correctAnswerMessage: 'Wow, you are intelligent.',
@@ -74,6 +79,11 @@ export const STRINGS = {
   // Gift 3
   gift3Title: 'I LOVEEE UUUU BABY 💗\nMORE THAN ANYTHING 🌸✨❤️\nFOREVER AND EVER ❤️😘',
   memoriesGifFallback: '📸 Memories',
+  
+  // Final Surprise screen
+  finalSurpriseTitle: 'Final Surprise Baby ❤️✨',
+  finalSurprisePrompt: 'Click the Surprise Box 🎁👇',
+  finalSurpriseMessage: 'THANK YOU BABY FOR COMING IN MY LIFE ❤️\n\nI\'M THE MOST LUCKY PERSON IN THIS WORLD TO HAVE YOU 💖\n\nYOU ARE THE BEST BABY ✨\n\nYOU ARE SOO MUCH PRECIOUS FOR ME 🥺💗\n\nI LOVE YOU ALWAYS 💖 FOREVER ♾️✨',
   
   // Success screen
   successTitle: 'Yayyy my love!! ❤️♾️',

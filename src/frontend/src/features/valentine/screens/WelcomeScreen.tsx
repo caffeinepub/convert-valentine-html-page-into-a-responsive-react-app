@@ -24,8 +24,8 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
         
         <div className="my-4">
           <ValentineGif
-            src={ASSETS.roseGif}
-            alt="Rose GIF"
+            src={ASSETS.welcomeGif}
+            alt="Welcome GIF"
             fallbackText={STRINGS.roseGifFallback}
           />
         </div>

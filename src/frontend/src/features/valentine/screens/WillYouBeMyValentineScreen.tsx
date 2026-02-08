@@ -18,6 +18,7 @@ interface WillYouBeMyValentineScreenProps {
 
 export function WillYouBeMyValentineScreen({ onNavigate }: WillYouBeMyValentineScreenProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [yesButtonScale, setYesButtonScale] = useState(1);
   const {
     currentGifUrl,
     previewUrl,
@@ -30,11 +31,12 @@ export function WillYouBeMyValentineScreen({ onNavigate }: WillYouBeMyValentineS
   } = useCustomValentineGif();
 
   const handleYes = () => {
-    onNavigate('gifts');
+    onNavigate('congratulations');
   };
 
   const handleNo = () => {
-    alert(STRINGS.wrongAnswer);
+    // Grow the Yes button progressively
+    setYesButtonScale((prev) => prev + 0.15);
   };
 
   const handleApplyGif = () => {
@@ -174,7 +176,8 @@ export function WillYouBeMyValentineScreen({ onNavigate }: WillYouBeMyValentineS
           <Button
             onClick={handleYes}
             size="lg"
-            className="valentine-button text-xl"
+            className="valentine-button text-xl transition-transform duration-300"
+            style={{ transform: `scale(${yesButtonScale})` }}
           >
             {STRINGS.yes} 💖
           </Button>

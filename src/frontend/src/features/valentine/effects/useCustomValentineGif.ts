@@ -15,7 +15,7 @@ interface UseCustomValentineGifReturn {
 }
 
 export function useCustomValentineGif(): UseCustomValentineGifReturn {
-  const [currentGifUrl, setCurrentGifUrl] = useState<string>(ASSETS.hugGif);
+  const [currentGifUrl, setCurrentGifUrl] = useState<string>(ASSETS.valentineGif);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isValidating, setIsValidating] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,7 +69,7 @@ export function useCustomValentineGif(): UseCustomValentineGifReturn {
   };
 
   const resetToDefault = () => {
-    setCurrentGifUrl(ASSETS.hugGif);
+    setCurrentGifUrl(ASSETS.valentineGif);
     setPreviewUrl('');
     setError(null);
     localStorage.removeItem(STORAGE_KEY);

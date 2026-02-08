@@ -4,11 +4,12 @@ import type { Screen } from '../ValentineFlow';
 export const FLOW_ORDER: Screen[] = [
   'welcome',
   'valentine',
+  'congratulations',
   'gifts',
   'gift1',
   'gift2',
   'gift3',
-  'success',
+  'finalSurprise',
 ];
 
 // Helper to get the previous screen in the flow

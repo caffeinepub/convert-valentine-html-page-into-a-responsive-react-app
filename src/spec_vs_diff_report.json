@@ -1,32 +1,39 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T07:14:44.412Z",
-  "summary": "Implemented reusable Back/Next controls with a centralized flow order, added a reusable GIF component with graceful fallback rendering, updated multiple Valentine screens to include GIFs and Back/Next controls, and extended centralized strings with new navigation and fallback labels.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-08T08:23:38.054Z",
+  "summary": "REQ-27 is partially implemented: several specified GIF URLs in frontend/src/features/valentine/content/assets.ts were updated to the exact Tenor links, and ChooseYourGiftScreen uses ASSETS.giftsGif via the existing ValentineGif component. However, the required exact URL for ASSETS.kissGif does not match the BuildRequest, and additional unrelated GIF URLs appear to have been changed beyond the requested set.",
+  "missing_requirements": [
     {
-      "description": "Added chevron icons (left/right) to the Back/Next navigation buttons.",
-      "reason": "REQ-14 specifies persistent Back/Next controls and centralized labels, but does not request icons or specific iconography.",
+      "id": "REQ-27",
+      "requirement": "Set ASSETS.kissGif (screen 6: gift2) to exactly: https://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449",
+      "reason": "The diff shows ASSETS.kissGif set to a different URL than the exact one required by the acceptance criteria.",
       "evidence": [
-        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx"
+        "frontend/src/features/valentine/content/assets.ts"
       ]
     }
   ],
-  "confidence": 0.74,
+  "hallucinated_features": [
+    {
+      "description": "Updated ASSETS.kissGif to a different Tenor URL than the one requested (media.tenor.com/...cute.gif instead of tenor.com/view/...-26543449).",
+      "reason": "BuildRequest requires an exact URL replacement; the implemented URL does not match the specified value.",
+      "evidence": [
+        "frontend/src/features/valentine/content/assets.ts"
+      ]
+    },
+    {
+      "description": "Changed additional GIF URL(s) beyond the specific screens listed in the request (e.g., valentineGif, roseGif, hugGif).",
+      "reason": "Non-goals/constraints indicate only the specified non-loading screen GIF sources should be updated; the diff shows other asset URLs present/updated that are not part of the explicit acceptance criteria list.",
+      "evidence": [
+        "frontend/src/features/valentine/content/assets.ts"
+      ]
+    }
+  ],
+  "confidence": 0.7,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-    "frontend/src/features/valentine/components/ValentineGif.tsx",
-    "frontend/src/features/valentine/content/flowOrder.ts",
-    "frontend/src/features/valentine/content/strings.ts",
+    "frontend/src/features/valentine/content/assets.ts",
     "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-    "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-    "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-    "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
     "project_state.json"
   ]
 }

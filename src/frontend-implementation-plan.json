@@ -1,139 +1,30 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Sequential Back/Next navigation and GIFs across Valentine flow screens",
+  "title": "Replace broken Valentine flow GIF URLs with user-provided Tenor links",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Add persistent Back/Next controls on every Valentine flow screen and enforce a consistent sequential order across the flow.",
+      "id": "REQ-27",
+      "summary": "Replace non-loading GIF URLs on the specified Valentine flow screens (1st, 3rd, 4th, 6th, 7th, last) with the exact user-provided Tenor URLs while keeping flow/navigation and error-handling unchanged.",
       "acceptanceCriteria": [
-        "Each screen renders a clearly visible Back and Next control positioned below the main content area (within the same centered layout/card).",
-        "Back/Next labels are in English and use centralized string constants (no hardcoded button text scattered across screens).",
-        "Back/Next navigation works without breaking existing per-screen actions (e.g., Gift buttons on the gifts screen, Yes/No actions on the Valentine screen, quiz answer behavior on Gift 1).",
-        "Sequential navigation order is consistent across the entire flow: Welcome → Will You Be My Valentine → Choose Your Gift → Gift 1 → Gift 2 → Gift 3 → Success (Back goes in reverse order)."
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.welcomeGif (screen 1: welcome) to exactly: https://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif",
+        "In frontend/src/features/valentine/content/assets.ts, set the GIF used by the 3rd screen (congratulations) to exactly: https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif",
+        "The 4th screen (gifts / ChooseYourGiftScreen) uses a dedicated GIF URL that is exactly: https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif (do not reuse the congratulations GIF for this screen)",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.kissGif (screen 6: gift2) to exactly: https://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.gift3Gif (screen 7: gift3) to exactly: https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.finalSurpriseGif (last screen: finalSurprise) to exactly: https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif",
+        "All affected screens display their GIF using the existing ValentineGif error-handling behavior (fallback text shows if the image fails to load), and no user-facing text is changed away from English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/features/valentine/content/flowOrder.ts",
-          "operation": "create",
-          "description": "Create a centralized Valentine flow order definition plus helper(s) to compute previous/next screen keys, ensuring the sequence is consistent across all screens."
-        },
-        {
-          "path": "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "operation": "create",
-          "description": "Add a reusable Back/Next control row component to be placed below each screen’s main content within the ValentineLayout card. Use the shadcn-ui Button component to render the controls. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+          "path": "frontend/src/features/valentine/content/assets.ts",
           "operation": "modify",
-          "description": "Wire the new Back/Next controls below the existing welcome content. Back should be disabled on Welcome; Next should navigate to Will You Be My Valentine using the centralized flow order and STRINGS-based labels. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "operation": "modify",
-          "description": "Add persistent Back/Next controls below the existing Yes/No actions without changing the Yes/No behaviors. Back should go to Welcome; Next should go to Choose Your Gift using centralized flow order and STRINGS labels. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
+          "description": "Update the configured Tenor GIF URLs to the exact user-provided URLs for: ASSETS.welcomeGif (welcome), ASSETS.congratulationsGif (congratulations), ASSETS.kissGif (gift2), ASSETS.gift3Gif (gift3), and ASSETS.finalSurpriseGif (finalSurprise). Add a new dedicated asset key for the gifts screen GIF (e.g., ASSETS.giftsGif) set to exactly https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif so the gifts screen does not reuse the congratulations GIF."
         },
         {
           "path": "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
           "operation": "modify",
-          "description": "Add persistent Back/Next controls below the gift selection buttons. Back should go to Will You Be My Valentine; Next should go to Gift 1 (while keeping the existing Gift 1/2/3 buttons working). Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "operation": "modify",
-          "description": "Add persistent Back/Next controls below the quiz UI. Back should go to Choose Your Gift; Next should go to Gift 2. Update quiz completion navigation so finishing the quiz proceeds to Gift 2 (not directly to Success) to match the required sequential order, while preserving existing quiz answer validation behavior. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "operation": "modify",
-          "description": "Add persistent Back/Next controls below the existing message and existing Back to Gifts button. Back should go to Gift 1; Next should go to Gift 3. Ensure existing Back to Gifts button continues to work. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "operation": "modify",
-          "description": "Add persistent Back/Next controls below the images and existing Back to Gifts button. Back should go to Gift 2; Next should go to Success. Ensure existing Back to Gifts button continues to work. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-          "operation": "modify",
-          "description": "Add persistent Back/Next controls below the existing Success actions. Back should go to Gift 3; Next should be disabled on Success (end of flow). Ensure existing Start Over and Back to Gifts buttons continue to work. Use shadcn-ui Button via the shared controls component. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "summary": "Ensure every Valentine flow screen displays at least one GIF with graceful fallback behavior using existing assets.",
-      "acceptanceCriteria": [
-        "Every screen in the flow renders at least one GIF element (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1, Gift 2, Gift 3, Success).",
-        "For screens that already include a GIF (Welcome, Will You Be My Valentine, Gift 2), the GIF remains present after changes.",
-        "For screens that newly add a GIF, the GIF uses existing ASSETS entries (e.g., ASSETS.bubuDudu and/or the existing Tenor GIF URLs) and includes an English alt text.",
-        "If a GIF fails to load, the UI degrades gracefully (e.g., fallback container/text) without layout breakage."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/valentine/components/ValentineGif.tsx",
-          "operation": "create",
-          "description": "Create a reusable GIF renderer that uses existing ASSETS URLs/paths, provides safe onError handling, and shows a stable fallback container with a STRINGS-provided English fallback label when loading fails."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "operation": "modify",
-          "description": "Keep the existing Welcome GIF visible after changes, and migrate to or wrap with the shared ValentineGif component to ensure consistent graceful fallback without layout breakage."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "operation": "modify",
-          "description": "Keep the existing Valentine GIF visible after changes while preserving custom GIF selection behavior, and ensure graceful fallback remains in place (preferably via the shared ValentineGif component where compatible)."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "operation": "modify",
-          "description": "Keep the existing Gift 2 GIF visible after changes and ensure graceful fallback behavior remains stable (preferably via the shared ValentineGif component)."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-          "operation": "modify",
-          "description": "Add a GIF element to the Choose Your Gift screen using an existing ASSETS entry (e.g., ASSETS.hugGif or ASSETS.bubuDudu) and an English alt text, with graceful fallback via the shared ValentineGif component."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "operation": "modify",
-          "description": "Add a GIF element to the Gift 1 Quiz screen using an existing ASSETS entry (e.g., ASSETS.roseGif, ASSETS.hugGif, or ASSETS.bubuDudu) and an English alt text, with graceful fallback via the shared ValentineGif component."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "operation": "modify",
-          "description": "Add a GIF element to the Gift 3 Images screen using an existing ASSETS entry (e.g., ASSETS.roseGif, ASSETS.hugGif, or ASSETS.bubuDudu) and an English alt text, with graceful fallback via the shared ValentineGif component."
-        },
-        {
-          "path": "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-          "operation": "modify",
-          "description": "Add a GIF element to the Success screen using an existing ASSETS entry (e.g., ASSETS.hugGif or ASSETS.bubuDudu) and an English alt text, with graceful fallback via the shared ValentineGif component."
-        }
-      ]
-    },
-    {
-      "id": "REQ-16",
-      "summary": "Update centralized STRINGS with new English labels for Back/Next controls and new GIF fallback labels introduced on updated screens.",
-      "acceptanceCriteria": [
-        "New button labels and fallback labels are added to frontend/src/features/valentine/content/strings.ts and referenced from screens via STRINGS.",
-        "All new user-facing text added for this change is in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/valentine/content/strings.ts",
-          "operation": "modify",
-          "description": "Add centralized English strings for Back/Next control labels and any newly introduced GIF fallback labels for screens that newly gained a GIF (Choose Your Gift, Gift 1, Gift 3, Success), and update screens/components to reference these values via STRINGS."
-        },
-        {
-          "path": "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "operation": "modify",
-          "description": "Wire Back/Next button text to use STRINGS (no hardcoded labels). Use the shadcn-ui Button component for rendering. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/valentine/components/ValentineGif.tsx",
-          "operation": "modify",
-          "description": "Ensure the fallback label displayed on GIF load failure is provided by STRINGS (no hardcoded fallback text) and is in English."
+          "description": "Wire the gifts screen to use the new dedicated gifts GIF asset (e.g., ASSETS.giftsGif) instead of ASSETS.congratulationsGif, ensuring it continues to render via the existing ValentineGif component (preserving current error-handling and fallback behavior) and without changing any user-facing text."
         }
       ]
     }

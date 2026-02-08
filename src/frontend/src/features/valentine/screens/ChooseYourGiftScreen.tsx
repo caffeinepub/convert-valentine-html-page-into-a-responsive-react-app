@@ -20,8 +20,8 @@ export function ChooseYourGiftScreen({ onNavigate }: ChooseYourGiftScreenProps) 
         
         <div className="my-4">
           <ValentineGif
-            src={ASSETS.hugGif}
-            alt="Hug GIF"
+            src={ASSETS.giftsGif}
+            alt="Choose Your Gift GIF"
             fallbackText={STRINGS.giftsGifFallback}
           />
         </div>

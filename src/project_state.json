@@ -1,15 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 11,
-  "summary": "Build a responsive React project version of an interactive Valentine-themed webpage (multi-page flow with animations, audio, and images).",
+  "projectStateVersion": 21,
+  "summary": "Build a responsive React project version of the provided \"Valentine Journey\" interactive webpage (multi-page flow with animations like floating hearts + glitter burst, popups, audio, and GIF/images).",
   "architectural_notes": [
     "Implement as a responsive React single-page app with component-based pages and state-driven navigation.",
-    "Support user-configurable media assets (e.g., GIF) via a configurable asset path or upload/selection, and reference it from React state/config rather than hardcoding."
+    "Support user-configurable media assets (e.g., GIF) via a configurable asset path or upload/selection, and reference it from React state/config rather than hardcoding.",
+    "Prefer stable, direct image URLs (e.g., media.tenor.com *.gif) over Tenor page URLs (tenor.com/view/...) to avoid hotlink/expiry issues; validate GIF URLs per screen in centralized asset config."
   ],
   "known_issues": [
-    "Previous deployment/draft expired; site needs rebuild/redeploy to provide a working shareable link."
+    "Previous deployment/draft expired; site needs rebuild/redeploy to provide a working shareable link.",
+    "Several screens’ Tenor GIFs fail to load (1st, 3rd, 4th, 6th, 7th, last); requires replacing with stable direct GIF URLs."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-recreate-the-provided-valentine-html-css-js-experience-as-a-responsive-react-typescript-ui-with-tailwind-styling-preserving-the-same-multi-screen-flow-1-will-you-be-my-valentine-screen-with-yes-no-actions-2-choose-your-gift-screen-3-gift-1-question-screen-with-four-choices-4-gift-2-message-screen-5-gift-3-message-two-images-screen-and-6-final-success-screen",
@@ -138,6 +140,94 @@
         "REQ-16"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-valentine-flow-to-match-the-provided-html-page-sequence-by-adding-a-dedicated-congratulations-screen-between-the-valentine-question-screen-and-the-gifts-screen-with-the-exact-headings-congratulations-my-love-and-you-won-my-heart-an-open-gifts-primary-button-that-navigates-to-the-gifts-screen-and-back-next-controls-that-follow-the-linear-flow",
+      "title": "Update the Valentine flow to match the provided HTML page sequence by adding a dedicated “Congratulations” screen between the Valentine question screen and the Gifts screen, with the exact headings “🎉 Congratulations My Love ❤️” and “You won my heart 😘”, an “Open Gifts 🎁” primary button that navigates to the Gifts screen, and Back/Next controls that follow the linear flow.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-final-surprise-interaction-from-the-provided-html-by-adding-a-new-final-final-surprise-baby-screen-that-displays-a-gif-shows-the-prompt-click-the-surprise-box-renders-the-clickable-surprise-box-image-https-cdn-icons-png-flaticon-com-512-4208-4208394-png-and-on-click-reveals-the-pop-up-message-with-a-pop-out-animation-and-triggers-a-short-glitter-sparkle-burst-effect",
+      "title": "Implement the final surprise interaction from the provided HTML by adding a new final “Final Surprise Baby ❤️✨” screen that displays a GIF, shows the prompt “Click the Surprise Box 🎁👇”, renders the clickable surprise box image (https://cdn-icons-png.flaticon.com/512/4208/4208394.png), and on click reveals the pop-up message with a pop-out animation and triggers a short glitter/sparkle burst effect.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-valentine-flow-navigation-model-and-types-to-include-the-new-screens-and-to-match-the-html-ordering-welcome-valentine-question-congratulations-gift-1-quiz-gift-2-message-gift-3-final-surprise-ensure-the-existing-back-next-controls-continue-to-work-across-all-screens-in-this-updated-order",
+      "title": "Update the Valentine flow navigation model and types to include the new screens and to match the HTML ordering: Welcome → Valentine Question → Congratulations → Gift 1 Quiz → Gift 2 Message → Gift 3 → Final Surprise. Ensure the existing Back/Next controls continue to work across all screens in this updated order.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-centralized-asset-configuration-so-the-app-uses-the-exact-gif-urls-from-the-user-provided-html-for-the-corresponding-screens-welcome-gif-https-media-tenor-com-tzkz0cuxr2aaaaam-bubu-dudu-love-gif-valentine-question-gif-https-media-tenor-com-et2ymlk4c9oaaaam-bubu-dudu-gif-congratulations-gif-https-media-tenor-com-jeyyu6zqymmaaaam-bubu-dudu-hug-gif-gift-1-gif-https-media-tenor-com-zegzqseuxbiaaaam-bubu-dudu-love-gif-gift-2-gif-https-media-tenor-com-8d4thulicl0aaaam-bubu-dudu-kiss-gif-gift-3-gif-https-media-tenor-com-u4e7b7c9zwqaaaam-dudu-and-bubu-gif-final-surprise-gif-https-media-tenor-com-z-m1hu8z2n4aaaam-bubu-dudu-gif",
+      "title": "Update the centralized asset configuration so the app uses the exact GIF URLs from the user-provided HTML for the corresponding screens: Welcome GIF https://media.tenor.com/tZkz0CuxR2AAAAAM/bubu-dudu-love.gif; Valentine question GIF https://media.tenor.com/eT2ymlk4C9oAAAAM/bubu-dudu.gif; Congratulations GIF https://media.tenor.com/jEyyU6zQymMAAAAM/bubu-dudu-hug.gif; Gift 1 GIF https://media.tenor.com/zeGZqSEuxbIAAAAM/bubu-dudu-love.gif; Gift 2 GIF https://media.tenor.com/8D4tHULICL0AAAAM/bubu-dudu-kiss.gif; Gift 3 GIF https://media.tenor.com/U4E7B7C9ZwQAAAAM/dudu-and-bubu.gif; Final Surprise GIF https://media.tenor.com/Z_M1hU8Z2n4AAAAM/bubu-dudu.gif.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-behavior-of-the-valentine-question-screen-s-no-action-to-match-the-provided-html-each-press-of-no-should-increase-the-visual-size-e-g-font-size-scale-of-the-yes-button-progressively-instead-of-showing-an-alert",
+      "title": "Change the behavior of the Valentine question screen’s “No” action to match the provided HTML: each press of “No” should increase the visual size (e.g., font size / scale) of the “Yes” button progressively, instead of showing an alert.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-user-facing-quiz-strings-are-written-in-english-with-consistent-capitalization-and-phrasing-aligning-the-gift-1-quiz-content-with-the-provided-html-s-five-questions-while-keeping-the-existing-correct-answer-feedback-message-exactly-wow-you-are-intelligent",
+      "title": "Ensure all user-facing quiz strings are written in English with consistent capitalization and phrasing, aligning the Gift 1 quiz content with the provided HTML’s five questions while keeping the existing correct-answer feedback message exactly “Wow, you are intelligent.”.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-photo-images-section-from-the-valentine-flow-ui-so-that-no-user-photos-are-displayed-anywhere-in-the-app-specifically-removing-the-two-memory-images-currently-rendered-on-the-gift-3-screen",
+      "title": "Remove the photo/images section from the Valentine flow UI so that no user photos are displayed anywhere in the app, specifically removing the two memory images currently rendered on the Gift 3 screen.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-clean-up-unused-photo-asset-references-after-removing-the-photo-section-ensure-the-frontend-codebase-no-longer-imports-or-references-the-removed-photo-assets-from-the-centralized-asset-configuration",
+      "title": "Clean up unused photo asset references after removing the photo section: ensure the frontend codebase no longer imports or references the removed photo assets from the centralized asset configuration.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-gif-image-corresponding-to-the-selected-element-xpath-html-1-body-1-div-1-div-1-div-3-div-1-div-1-div-1-div-1-img-1-so-it-uses-this-exact-url-as-its-src-https-media-tenor-com-az12yafzvwwaaaai-bubu-dudu-prince-bubu-dudu-princess-gif-in-the-current-code-this-should-be-achieved-by-updating-the-gif-source-used-by-the-screen-component-that-renders-that-selected-img-currently-the-gift-3-gif-sourced-from-assets-gift3gif-used-in-gift3imagesscreen",
+      "title": "Update ONLY the GIF image corresponding to the selected element (XPath: /html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/img[1]) so it uses this exact URL as its src: https://media.tenor.com/AZ12YafzVwwAAAAi/bubu-dudu-prince-bubu-dudu-princess.gif. In the current code, this should be achieved by updating the GIF source used by the screen/component that renders that selected <img> (currently the Gift 3 GIF sourced from ASSETS.gift3Gif used in Gift3ImagesScreen).",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-gif-image-corresponding-to-the-selected-element-xpath-html-1-body-1-div-1-div-1-div-3-div-1-div-1-div-1-div-1-img-1-so-it-uses-this-exact-url-as-its-src-https-media-tenor-com-owtgv7xphy4aaaai-sseeyall-bubu-dudu-gif-in-the-current-code-achieve-this-by-updating-the-gif-source-used-by-the-screen-component-that-renders-that-selected-img-gift3imagesscreen-uses-src-assets-gift3gif-so-assets-gift3gif-points-to-the-new-url",
+      "title": "Update ONLY the GIF image corresponding to the selected element (XPath: /html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/img[1]) so it uses this exact URL as its src: https://media.tenor.com/oWTGv7XpHY4AAAAi/sseeyall-bubu-dudu.gif. In the current code, achieve this by updating the GIF source used by the screen/component that renders that selected <img> (Gift3ImagesScreen uses src={ASSETS.gift3Gif}), so ASSETS.gift3Gif points to the new URL.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-gif-sources-for-the-screens-the-user-reported-as-not-loading-1st-3rd-4th-6th-7th-and-last-screens-in-the-current-flow-order-by-replacing-the-configured-gif-urls-with-the-exact-user-provided-urls-and-ensure-each-affected-screen-renders-its-updated-gif",
+      "title": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -180,6 +270,36 @@
     {
       "id": "AR-7",
       "summary": "Add/display a GIF on each page/screen of the Valentine flow (ensure every page includes an appropriate GIF element).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Implement the final surprise interaction from the provided HTML: clickable surprise box that reveals a pop-up message with a pop-out animation and triggers a short glitter/sparkle burst effect.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Remove the photo/images section from the Valentine flow UI (do not show the photo section anywhere, including the Gift 3 images screen if present).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update the app’s relevant default GIF to use https://media.tenor.com/AZ12YafzVwwAAAAi/bubu-dudu-prince-bubu-dudu-princess.gif (replacing the currently configured GIF URL).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Update the app’s relevant GIF asset to use the newly provided Tenor URL: https://media.tenor.com/oWTGv7XpHY4AAAAi/sseeyall-bubu-dudu.gif (replace the currently configured GIF on the intended screen).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Fix GIFs not loading on multiple screens by updating the GIF sources for the 1st, 3rd, 4th, 6th, 7th, and last screens to the user-provided Tenor URLs (replace the non-loading GIFs with the specified links).",
       "reqIds": [],
       "status": "pending"
     }

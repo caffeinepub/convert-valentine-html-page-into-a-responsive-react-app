@@ -1,73 +1,51 @@
 {
   "kind": "build_request",
-  "title": "Add Back/Next navigation controls and display a GIF on every Valentine screen",
+  "title": "Replace non-loading GIFs on specific Valentine flow screens with new Tenor URLs",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
+      "id": "REQ-27",
+      "text": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-5"
         ],
         "quotes": [
-          "You also have to put back and next option in each page below"
+          "First  third fourth sixth seventh and last screen not loading gif change them to \nhttps://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif\n https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif\nhttps://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif\nhttps://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449\nhttps://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif\nhttps://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif\n\nAdd these gif where gif not loading"
         ]
       },
       "acceptanceCriteria": [
-        "Each screen renders a clearly visible Back and Next control positioned below the main content area (within the same centered layout/card).",
-        "Back/Next labels are in English and use centralized string constants (no hardcoded button text scattered across screens).",
-        "Back/Next navigation works without breaking existing per-screen actions (e.g., Gift buttons on the gifts screen, Yes/No actions on the Valentine screen, quiz answer behavior on Gift 1).",
-        "Sequential navigation order is consistent across the entire flow: Welcome → Will You Be My Valentine → Choose Your Gift → Gift 1 → Gift 2 → Gift 3 → Success (Back goes in reverse order)."
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "text": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "and add gif in each page"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Every screen in the flow renders at least one GIF element (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1, Gift 2, Gift 3, Success).",
-        "For screens that already include a GIF (Welcome, Will You Be My Valentine, Gift 2), the GIF remains present after changes.",
-        "For screens that newly add a GIF, the GIF uses existing ASSETS entries (e.g., ASSETS.bubuDudu and/or the existing Tenor GIF URLs) and includes an English alt text.",
-        "If a GIF fails to load, the UI degrades gracefully (e.g., fallback container/text) without layout breakage."
-      ]
-    },
-    {
-      "id": "REQ-16",
-      "text": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "New button labels and fallback labels are added to frontend/src/features/valentine/content/strings.ts and referenced from screens via STRINGS.",
-        "All new user-facing text added for this change is in English."
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.welcomeGif (screen 1: welcome) to exactly: https://media.tenor.com/ZKsi3WzsGKwAAAAi/bubu-dudu-bear-and-panda.gif",
+        "In frontend/src/features/valentine/content/assets.ts, set the GIF used by the 3rd screen (congratulations) to exactly: https://media.tenor.com/lrtN5Vp1muUAAAAi/dancing-bears-peach-goma-ositos-bailando.gif",
+        "The 4th screen (gifts / ChooseYourGiftScreen) uses a dedicated GIF URL that is exactly: https://media.tenor.com/8Y5suXxoCOgAAAAi/bubu-dudu-sseeyall.gif (do not reuse the congratulations GIF for this screen)",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.kissGif (screen 6: gift2) to exactly: https://tenor.com/view/bubu-dudu-stickers-cute-love-gif-26543449",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.gift3Gif (screen 7: gift3) to exactly: https://media.tenor.com/n4IJmAXgRHwAAAAi/peach-and.gif",
+        "In frontend/src/features/valentine/content/assets.ts, set ASSETS.finalSurpriseGif (last screen: finalSurprise) to exactly: https://media.tenor.com/puetEXNh7mcAAAAi/bubu-bubu-dudu.gif",
+        "All affected screens display their GIF using the existing ValentineGif error-handling behavior (fallback text shows if the image fails to load), and no user-facing text is changed away from English."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only UI components); compose them as-is.",
-    "Do not edit any paths listed in SYSTEM_CONTEXT.frontend.immutablePaths.",
-    "Backend remains a single Motoko actor; no backend changes are required for this request."
+    "Frontend files under frontend/src/components/ui and the immutable hook/bootstrapping paths listed in SYSTEM_CONTEXT.frontend.immutablePaths must not be edited.",
+    "Keep the existing Valentine flow order and navigation behavior unchanged except for updating the GIF sources for the specified screens."
   ],
   "nonGoals": [
-    "Do not change or remove the falling-hearts animation.",
-    "Do not change or remove background music behavior.",
-    "Do not redesign the overall Valentine theme beyond what is necessary to place the Back/Next controls and add GIFs."
+    "Do not add new screens or change screen order.",
+    "Do not change quiz questions/answers, music behavior, falling-hearts animation, or other Valentine UI content beyond the GIF source updates requested."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

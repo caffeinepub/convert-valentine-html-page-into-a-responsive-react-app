@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add consistent Back/Next navigation and ensure a GIF appears on every screen in the Valentine flow.
+**Goal:** Fix Valentine flow screens with non-loading GIFs by updating their GIF URLs to the user-provided Tenor links.
 
 **Planned changes:**
-- Add persistent “Back” and “Next” controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) and wire them to the sequential flow order.
-- Centralize new user-facing strings (Back/Next labels and any GIF fallback text) in `frontend/src/features/valentine/content/strings.ts` and reference them via `STRINGS`.
-- Ensure every flow screen renders at least one GIF, using existing assets/URLs where available, and add safe fallback behavior/alt text so failed GIF loads don’t break layout.
+- Update the configured GIF URL for screen 1 (welcome) to the provided Tenor URL.
+- Update the configured GIF URL for screen 3 (congratulations) to the provided Tenor URL.
+- Set a dedicated GIF URL for screen 4 (gifts / ChooseYourGiftScreen) to the provided Tenor URL (separate from screen 3).
+- Update the configured GIF URLs for screen 6 (gift2 / kissGif), screen 7 (gift3 / gift3Gif), and the last screen (finalSurprise / finalSurpriseGif) to the provided Tenor URLs.
+- Keep the existing ValentineGif error-handling behavior and keep flow order/navigation unchanged.
 
-**User-visible outcome:** Users can move forward/backward through the Valentine screens using consistent controls on every page, and each page shows a GIF with graceful fallback if it can’t load.
+**User-visible outcome:** The previously broken GIFs on the specified Valentine flow screens load and display correctly (with the existing fallback behavior if a GIF fails to load).

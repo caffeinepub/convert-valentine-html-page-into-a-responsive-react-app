@@ -1,80 +1,26 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T07:14:44.416Z",
+  "generatedAt": "2026-02-08T08:23:38.057Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
+        "id": "REQ-27",
+        "summary": "Update the GIF sources for the screens the user reported as not loading (1st, 3rd, 4th, 6th, 7th, and last screens in the current FLOW_ORDER) by replacing the configured GIF URLs with the exact user-provided URLs, and ensure each affected screen renders its updated GIF.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/features/valentine/content/flowOrder.ts",
-          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
+          "frontend/src/features/valentine/content/assets.ts",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/features/valentine/content/flowOrder.ts",
-          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
-        ]
-      },
-      {
-        "id": "REQ-15",
-        "summary": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/features/valentine/components/ValentineGif.tsx",
-          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/features/valentine/components/ValentineGif.tsx",
-          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
-        ]
-      },
-      {
-        "id": "REQ-16",
-        "summary": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/features/valentine/content/strings.ts",
-          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "frontend/src/features/valentine/components/ValentineGif.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/features/valentine/content/strings.ts",
-          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-          "frontend/src/features/valentine/components/ValentineGif.tsx"
+          "frontend/src/features/valentine/content/assets.ts",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx"
         ]
       }
     ]
@@ -84,17 +30,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
-    "frontend/src/features/valentine/components/ValentineGif.tsx",
-    "frontend/src/features/valentine/content/flowOrder.ts",
-    "frontend/src/features/valentine/content/strings.ts",
+    "frontend/src/features/valentine/content/assets.ts",
     "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
-    "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
-    "frontend/src/features/valentine/screens/SuccessScreen.tsx",
-    "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-    "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
