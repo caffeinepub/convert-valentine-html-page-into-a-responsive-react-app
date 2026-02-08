@@ -1,0 +1,81 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add Welcome screen and Tenor GIF URLs to Valentine flow (frontend-only)",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "summary": "Add a new Welcome screen shown first with title/message, Rose GIF area, and a Continue button that navigates to the existing Valentine question screen.",
+      "acceptanceCriteria": [
+        "On app load, the first visible screen is the new Welcome screen (not the Valentine question screen).",
+        "Welcome screen displays: (1) a title, (2) a short welcome message, (3) an image area for the Rose GIF, and (4) a Continue button.",
+        "Clicking Continue navigates to the existing “Will You Be My Valentine?” screen without a full page reload.",
+        "All new user-facing UI labels added for this screen are written in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+          "operation": "create",
+          "description": "Create the new Welcome screen UI using the existing ValentineLayout and shadcn-ui Button components, with an explicit Rose GIF display area (render an <img> when a Rose GIF URL is configured; otherwise show an English placeholder/fallback panel). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/valentine/content/strings.ts",
+          "operation": "modify",
+          "description": "Add English string constants for the Welcome screen title, welcome message, Continue button label, and any Rose GIF fallback label."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Set provided Tenor GIF URLs: default Hug GIF on the Valentine question screen and add Kiss GIF on Gift 2 screen with graceful load fallback.",
+      "acceptanceCriteria": [
+        "The Valentine question screen initially renders the Hug GIF from https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif (unless the user has previously customized it via the existing Change GIF UI).",
+        "The Gift 2 screen renders the Kiss GIF from https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif above the message content.",
+        "If either Tenor GIF fails to load, the UI shows a sensible fallback (existing fallback behavior is preserved for the Valentine screen; Gift 2 has a graceful fallback rather than a broken image icon)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/content/assets.ts",
+          "operation": "modify",
+          "description": "Add constants for (1) the Valentine default Hug Tenor GIF URL, (2) the Gift 2 Kiss Tenor GIF URL, and (3) a local fallback GIF path (reuse existing generated bubu-dudu asset at frontend/public/assets/generated/bubu-dudu.dim_500x500.gif) for when the Tenor Hug GIF cannot be displayed."
+        },
+        {
+          "path": "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
+          "operation": "modify",
+          "description": "Update the default GIF behavior to use the Hug Tenor URL as the default when no custom GIF is saved, while preserving validation and persistence; add/adjust a safe fallback behavior so Tenor load failures fall back to the local generated GIF without looping back to the failing Tenor URL."
+        },
+        {
+          "path": "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
+          "operation": "modify",
+          "description": "Ensure the initial rendered GIF uses the updated default Hug Tenor URL (via the hook) and keep the existing graceful fallback behavior by switching to the local fallback GIF if the displayed GIF fails to load; continue using existing shadcn-ui dialog/buttons (compose only). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "operation": "modify",
+          "description": "Render the Kiss Tenor GIF above the message content and implement a graceful fallback when it fails to load (e.g., hide the image and show an English placeholder panel or omit the image area), avoiding a broken image icon; keep existing shadcn-ui Button usage (compose only). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Extend ValentineFlow navigation to include the new Welcome screen as the initial state while preserving all existing screens, falling hearts, and background music behavior.",
+      "acceptanceCriteria": [
+        "ValentineFlow includes a new screen state for the Welcome screen and routes correctly between Welcome -> Valentine question -> Gifts -> Gift screens -> Success.",
+        "Falling hearts and background music controls remain visible/functional across the new Welcome screen and all existing screens.",
+        "No changes are made to read-only/immutable frontend paths (hooks and ui component sources)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/ValentineFlow.tsx",
+          "operation": "modify",
+          "description": "Add a new 'welcome' screen state, make it the initial screen, import and render WelcomeScreen, and wire navigation from Welcome -> Valentine question while keeping FallingHeartsLayer and BackgroundMusicControl mounted across all screens."
+        },
+        {
+          "path": "frontend/src/features/valentine/screens/SuccessScreen.tsx",
+          "operation": "modify",
+          "description": "Update Start Over behavior to navigate to the new Welcome screen so the overall flow remains Welcome -> Valentine question -> ... -> Success, while keeping existing styling and shadcn-ui Button composition. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

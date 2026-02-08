@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Build a responsive React project version of an interactive Valentine-themed webpage (multi-page flow with animations, audio, and images).",
+  "architectural_notes": [
+    "Implement as a responsive React single-page app with component-based pages and state-driven navigation.",
+    "Support user-configurable media assets (e.g., GIF) via a configurable asset path or upload/selection, and reference it from React state/config rather than hardcoding."
+  ],
+  "known_issues": [
+    "Previous deployment/draft expired; site needs rebuild/redeploy to provide a working shareable link."
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-recreate-the-provided-valentine-html-css-js-experience-as-a-responsive-react-typescript-ui-with-tailwind-styling-preserving-the-same-multi-screen-flow-1-will-you-be-my-valentine-screen-with-yes-no-actions-2-choose-your-gift-screen-3-gift-1-question-screen-with-four-choices-4-gift-2-message-screen-5-gift-3-message-two-images-screen-and-6-final-success-screen",
+      "title": "Recreate the provided Valentine HTML/CSS/JS experience as a responsive React + TypeScript UI with Tailwind styling, preserving the same multi-screen flow: (1) “Will You Be My Valentine?” screen with Yes/No actions, (2) “Choose your Gift” screen, (3) Gift 1 question screen with four choices, (4) Gift 2 message screen, (5) Gift 3 message + two images screen, and (6) final success screen.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-falling-hearts-animation-as-a-react-friendly-effect-no-direct-dom-scripting-outside-react-lifecycle-matching-the-original-behavior-hearts-spawn-periodically-at-random-horizontal-positions-fall-down-the-viewport-with-varying-durations-and-get-cleaned-up-after-they-finish",
+      "title": "Implement the falling-hearts animation as a React-friendly effect (no direct DOM scripting outside React lifecycle), matching the original behavior: hearts spawn periodically at random horizontal positions, fall down the viewport with varying durations, and get cleaned up after they finish.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-background-music-playback-using-a-bundled-static-audio-asset-with-safe-browser-behavior-provide-a-visible-play-pause-control-and-attempt-autoplay-only-where-allowed-the-music-should-loop-when-playing",
+      "title": "Add background music playback using a bundled static audio asset, with safe browser behavior: provide a visible play/pause control and attempt autoplay only where allowed. The music should loop when playing.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-cohesive-valentine-themed-visual-design-using-tailwind-warm-pink-rose-palette-soft-gradients-rounded-buttons-and-a-playful-typography-pairing-including-a-safe-fallback-if-poppins-is-unavailable-apply-the-theme-consistently-across-all-screens",
+      "title": "Create a cohesive Valentine-themed visual design using Tailwind: warm pink/rose palette, soft gradients, rounded buttons, and a playful typography pairing (including a safe fallback if Poppins is unavailable). Apply the theme consistently across all screens.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-asset-pipeline-for-the-referenced-media-gif-photos-audio-place-assets-under-a-frontend-public-assets-folder-and-update-the-react-ui-to-reference-those-paths-provide-sensible-placeholders-if-user-photos-are-not-available",
+      "title": "Add a simple asset pipeline for the referenced media (GIF + photos + audio): place assets under a frontend public assets folder and update the React UI to reference those paths. Provide sensible placeholders if user photos are not available.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-user-facing-way-to-replace-the-default-couple-gif-on-the-will-you-be-my-valentine-screen-with-a-user-chosen-gif-without-requiring-code-changes",
+      "title": "Add a user-facing way to replace the default couple GIF on the “Will You Be My Valentine?” screen with a user-chosen GIF, without requiring code changes.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-first-screen-welcome-before-the-existing-will-you-be-my-valentine-screen-matching-the-user-s-original-html-flow-show-a-welcome-title-message-display-a-rose-gif-image-and-provide-a-single-continue-button-that-navigates-to-the-existing-valentine-question-screen",
+      "title": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-the-user-provided-tenor-gif-urls-in-the-react-app-set-the-default-gif-on-the-will-you-be-my-valentine-screen-to-https-media-tenor-com-wguecmjvn1gaaaad-bubu-dudu-hug-gif-and-add-display-the-gift-2-kiss-gif-https-media-tenor-com-tz2d6kitd0gaaaad-bubu-dudu-kisses-gif-on-the-gift-2-message-screen-similarly-to-the-original-html",
+      "title": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-valentineflow-navigation-model-to-include-the-new-welcome-screen-while-preserving-all-existing-screens-animations-falling-hearts-and-background-music-behavior",
+      "title": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Convert the provided Valentine HTML/CSS/JS page into a responsive React project (components, navigation between pages, falling hearts animation, audio, and assets).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Allow replacing the default bear-couple GIF with a user-chosen GIF (provide a configurable asset path or upload/selection mechanism and update UI to use it).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add the requested Bubu Dudu Rose GIF to the first (welcome) page in addition to the existing Hug (Page 2) and Kiss (Page 5) GIFs.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Rebuild and redeploy the Valentine website to provide a clean, shareable public URL (shared-link website).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Convert Valentine HTML page into a responsive React app",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

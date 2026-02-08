@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main application entry component that renders the ValentineFlow component.",
+  "frontend/src/features/valentine/ValentineFlow.tsx": "Core flow controller managing screen navigation state including new Welcome screen as initial state, rendering appropriate screen components along with falling hearts and music controls across all screens.",
+  "frontend/src/features/valentine/components/ValentineLayout.tsx": "Shared layout wrapper providing consistent card-based styling and centering for all Valentine screens.",
+  "frontend/src/features/valentine/components/FallingHeartsLayer.tsx": "Renders the animated falling hearts overlay using the useFallingHearts hook.",
+  "frontend/src/features/valentine/components/BackgroundMusicControl.tsx": "Music player component with play/pause toggle button that handles autoplay and user-initiated playback.",
+  "frontend/src/features/valentine/effects/useFallingHearts.ts": "Custom React hook that manages spawning, animating, and cleaning up falling heart elements with randomized positions and durations.",
+  "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx": "Valentine question screen with \"Will You Be My Valentine?\" question, Yes/No buttons, Hug GIF display with fallback to local GIF on load error, and dialog-based GIF customization UI.",
+  "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx": "Second screen presenting three gift options as large buttons.",
+  "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx": "Gift 1 screen with four-choice question about wanting the person in their life forever.",
+  "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx": "Gift 2 screen displaying Kiss GIF above a heartfelt multi-line love message with glow effects and graceful fallback for failed GIF loads.",
+  "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx": "Gift 3 screen showing two images in a responsive grid layout with romantic text.",
+  "frontend/src/features/valentine/screens/SuccessScreen.tsx": "Final success screen shown after correct answers with navigation options to restart from Welcome screen or return to gifts.",
+  "frontend/src/features/valentine/content/strings.ts": "Centralized string constants for all user-facing text including new Welcome screen labels, Rose and Kiss GIF fallback text, and all existing screen content.",
+  "frontend/src/features/valentine/content/assets.ts": "Centralized asset path constants including local fallback GIF, Tenor GIF URLs (Rose, Hug, Kiss), images, and music file.",
+  "frontend/src/index.css": "Global styles with Valentine-themed OKLCH color system, custom component classes, and falling heart animation keyframes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Poppins font family, pink/rose color palette, and custom fall animation.",
+  "frontend/index.html": "HTML entry point with Poppins font preload and updated title for the Valentine application.",
+  "frontend/src/features/valentine/effects/useCustomValentineGif.ts": "Custom React hook that manages user-selected GIF URLs with localStorage persistence, validation via Image loading, and fallback to local GIF (instead of Tenor URL) on errors, with Hug GIF as the new default.",
+  "frontend/src/features/valentine/screens/WelcomeScreen.tsx": "New Welcome screen component that displays a title, welcome message, Rose GIF with graceful fallback, and a Continue button to navigate to the Valentine question screen."
+}

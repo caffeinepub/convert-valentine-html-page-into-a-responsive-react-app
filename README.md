@@ -1,2 +1,3 @@
-# convert-valentine-html-page-into-a-responsive-react-app
-Exported from Caffeine project: Convert Valentine HTML page into a responsive React app
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

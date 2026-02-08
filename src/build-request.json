@@ -1,0 +1,88 @@
+{
+  "kind": "build_request",
+  "title": "Add Welcome screen + set provided Tenor GIF URLs for Valentine flow",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "First page",
+          "Now start making",
+          "Start build my website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On app load, the first visible screen is the new Welcome screen (not the Valentine question screen).",
+        "Welcome screen displays: (1) a title, (2) a short welcome message, (3) an image area for the Rose GIF, and (4) a Continue button.",
+        "Clicking Continue navigates to the existing “Will You Be My Valentine?” screen without a full page reload.",
+        "All new user-facing UI labels added for this screen are written in English."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "<img src=\"https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif\"",
+          "<img src=\"https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Valentine question screen initially renders the Hug GIF from https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif (unless the user has previously customized it via the existing Change GIF UI).",
+        "The Gift 2 screen renders the Kiss GIF from https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif above the message content.",
+        "If either Tenor GIF fails to load, the UI shows a sensible fallback (existing fallback behavior is preserved for the Valentine screen; Gift 2 has a graceful fallback rather than a broken image icon)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Start build my website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "ValentineFlow includes a new screen state for the Welcome screen and routes correctly between Welcome -> Valentine question -> Gifts -> Gift screens -> Success.",
+        "Falling hearts and background music controls remain visible/functional across the new Welcome screen and all existing screens.",
+        "No changes are made to read-only/immutable frontend paths (hooks and ui component sources)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
+    "Backend must remain single-actor; no new backend services."
+  ],
+  "nonGoals": [
+    "Implementing a backend canister or persistence changes in Motoko for this request.",
+    "Providing or generating the missing Rose GIF URL (it is not provided in the conversation).",
+    "Deployment/redeployment mechanics or guaranteeing a specific public URL (beyond ensuring the app builds and runs within the platform)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
