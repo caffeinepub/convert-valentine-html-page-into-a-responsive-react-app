@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ValentineLayout } from '../components/ValentineLayout';
+import { ValentineGif } from '../components/ValentineGif';
+import { ValentineBackNextControls } from '../components/ValentineBackNextControls';
 import { STRINGS } from '../content/strings';
 import { ASSETS } from '../content/assets';
 import type { Screen } from '../ValentineFlow';
@@ -17,26 +19,11 @@ export function Gift2MessageScreen({ onNavigate }: Gift2MessageScreenProps) {
         </h2>
         
         <div className="my-4">
-          <img
+          <ValentineGif
             src={ASSETS.kissGif}
             alt="Kiss GIF"
-            className="h-auto w-64 rounded-2xl"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = target.nextElementSibling as HTMLElement;
-              if (fallback) {
-                fallback.style.display = 'flex';
-              }
-            }}
+            fallbackText={STRINGS.kissGifFallback}
           />
-          <div 
-            className="hidden h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-pink-300 bg-pink-50 dark:border-pink-700 dark:bg-pink-900/30"
-          >
-            <p className="text-pink-500 dark:text-pink-400">
-              {STRINGS.kissGifFallback}
-            </p>
-          </div>
         </div>
         
         <div className="glow-text space-y-3 text-lg leading-relaxed text-pink-700 dark:text-pink-300 sm:text-xl">
@@ -57,6 +44,11 @@ export function Gift2MessageScreen({ onNavigate }: Gift2MessageScreenProps) {
         >
           {STRINGS.backToGifts}
         </Button>
+        
+        <ValentineBackNextControls
+          currentScreen="gift2"
+          onNavigate={onNavigate}
+        />
       </div>
     </ValentineLayout>
   );

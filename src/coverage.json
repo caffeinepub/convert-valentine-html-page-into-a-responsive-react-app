@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T06:14:32.675Z",
+  "generatedAt": "2026-02-08T07:14:44.416Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,46 +11,70 @@
     "implemented": 3,
     "items": [
       {
-        "id": "REQ-7",
-        "summary": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
+        "id": "REQ-14",
+        "summary": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/features/valentine/content/flowOrder.ts",
+          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
           "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/content/strings.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
-          "frontend/src/features/valentine/content/strings.ts"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/features/valentine/content/assets.ts",
-          "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
           "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/features/valentine/content/assets.ts",
-          "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
-          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
-          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/features/valentine/ValentineFlow.tsx",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
           "frontend/src/features/valentine/screens/SuccessScreen.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/features/valentine/ValentineFlow.tsx",
+          "frontend/src/features/valentine/content/flowOrder.ts",
+          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
           "frontend/src/features/valentine/screens/SuccessScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/components/ValentineGif.tsx",
+          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
+          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/components/ValentineGif.tsx",
+          "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+          "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
+          "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
+          "frontend/src/features/valentine/screens/SuccessScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/content/strings.ts",
+          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+          "frontend/src/features/valentine/components/ValentineGif.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/content/strings.ts",
+          "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+          "frontend/src/features/valentine/components/ValentineGif.tsx"
         ]
       }
     ]
@@ -60,11 +84,14 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/features/valentine/ValentineFlow.tsx",
-    "frontend/src/features/valentine/content/assets.ts",
+    "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+    "frontend/src/features/valentine/components/ValentineGif.tsx",
+    "frontend/src/features/valentine/content/flowOrder.ts",
     "frontend/src/features/valentine/content/strings.ts",
-    "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
+    "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+    "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
     "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+    "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
     "frontend/src/features/valentine/screens/SuccessScreen.tsx",
     "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
     "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",

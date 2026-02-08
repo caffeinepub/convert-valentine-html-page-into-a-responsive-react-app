@@ -2,31 +2,17 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-new-first-screen-welcome-before-the-existing-will-you-be-my-valentine-screen-matching-the-user-s-original-html-flow-show-a-welcome-title-message-display-a-rose-gif-image-and-provide-a-single-continue-button-that-navigates-to-the-existing-valentine-question-screen",
-      "featureTitle": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
+      "featureId": "feature-add-persistent-back-and-next-navigation-controls-below-the-main-content-on-every-valentine-flow-screen-welcome-will-you-be-my-valentine-choose-your-gift-gift-1-quiz-gift-2-message-gift-3-images-success-so-users-can-move-sequentially-through-the-screens",
+      "featureTitle": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
       "files": [
-        "frontend/src/features/valentine/content/strings.ts",
-        "frontend/src/features/valentine/screens/WelcomeScreen.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-use-the-user-provided-tenor-gif-urls-in-the-react-app-set-the-default-gif-on-the-will-you-be-my-valentine-screen-to-https-media-tenor-com-wguecmjvn1gaaaad-bubu-dudu-hug-gif-and-add-display-the-gift-2-kiss-gif-https-media-tenor-com-tz2d6kitd0gaaaad-bubu-dudu-kisses-gif-on-the-gift-2-message-screen-similarly-to-the-original-html",
-      "featureTitle": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
-      "files": [
-        "frontend/src/features/valentine/content/assets.ts",
-        "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
+        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+        "frontend/src/features/valentine/content/flowOrder.ts",
+        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+        "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
         "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+        "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
+        "frontend/src/features/valentine/screens/SuccessScreen.tsx",
+        "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
         "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx"
       ],
       "components": [
@@ -37,16 +23,22 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-8"
+        "REQ-14"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-valentineflow-navigation-model-to-include-the-new-welcome-screen-while-preserving-all-existing-screens-animations-falling-hearts-and-background-music-behavior",
-      "featureTitle": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
+      "featureId": "feature-display-a-gif-on-every-valentine-flow-screen-including-screens-that-currently-do-not-show-a-gif-choose-your-gift-gift-1-quiz-gift-3-images-success-using-the-existing-asset-pipeline-and-safe-fallback-behavior-if-a-gif-fails-to-load",
+      "featureTitle": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
       "files": [
-        "frontend/src/features/valentine/ValentineFlow.tsx",
-        "frontend/src/features/valentine/screens/SuccessScreen.tsx"
+        "frontend/src/features/valentine/components/ValentineGif.tsx",
+        "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+        "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
+        "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+        "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
+        "frontend/src/features/valentine/screens/SuccessScreen.tsx",
+        "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
+        "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -56,7 +48,27 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-centralized-strings-module-to-include-any-new-english-user-facing-text-introduced-by-the-back-next-controls-and-any-new-gif-fallback-labels-used-on-newly-updated-screens",
+      "featureTitle": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
+      "files": [
+        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+        "frontend/src/features/valentine/components/ValentineGif.tsx",
+        "frontend/src/features/valentine/content/strings.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
       ],
       "confidence": "high"
     }

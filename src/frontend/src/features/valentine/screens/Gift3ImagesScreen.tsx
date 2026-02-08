@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ValentineLayout } from '../components/ValentineLayout';
+import { ValentineGif } from '../components/ValentineGif';
+import { ValentineBackNextControls } from '../components/ValentineBackNextControls';
 import { STRINGS } from '../content/strings';
 import { ASSETS } from '../content/assets';
 import type { Screen } from '../ValentineFlow';
@@ -16,6 +18,14 @@ export function Gift3ImagesScreen({ onNavigate }: Gift3ImagesScreenProps) {
           {STRINGS.gift3Title}
         </h2>
         
+        <div className="my-4">
+          <ValentineGif
+            src={ASSETS.bubuDudu}
+            alt="Memories GIF"
+            fallbackText={STRINGS.memoriesGifFallback}
+          />
+        </div>
+        
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <img
             src={ASSETS.yourPic1}
@@ -29,10 +39,6 @@ export function Gift3ImagesScreen({ onNavigate }: Gift3ImagesScreenProps) {
           />
         </div>
         
-        <h3 className="text-2xl font-semibold text-pink-700 dark:text-pink-300">
-          {STRINGS.gift3Subtitle}
-        </h3>
-        
         <Button
           onClick={() => onNavigate('gifts')}
           size="lg"
@@ -40,6 +46,11 @@ export function Gift3ImagesScreen({ onNavigate }: Gift3ImagesScreenProps) {
         >
           {STRINGS.backToGifts}
         </Button>
+        
+        <ValentineBackNextControls
+          currentScreen="gift3"
+          onNavigate={onNavigate}
+        />
       </div>
     </ValentineLayout>
   );

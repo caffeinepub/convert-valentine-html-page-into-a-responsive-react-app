@@ -1,88 +1,73 @@
 {
   "kind": "build_request",
-  "title": "Add Welcome screen + set provided Tenor GIF URLs for Valentine flow",
+  "title": "Add Back/Next navigation controls and display a GIF on every Valentine screen",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-7",
-      "text": "Add a new first screen (Welcome) before the existing “Will You Be My Valentine?” screen, matching the user’s original HTML flow: show a welcome title/message, display a “Rose GIF” image, and provide a single “Continue” button that navigates to the existing Valentine question screen.",
+      "id": "REQ-14",
+      "text": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "First page",
-          "Now start making",
-          "Start build my website"
+          "You also have to put back and next option in each page below"
         ]
       },
       "acceptanceCriteria": [
-        "On app load, the first visible screen is the new Welcome screen (not the Valentine question screen).",
-        "Welcome screen displays: (1) a title, (2) a short welcome message, (3) an image area for the Rose GIF, and (4) a Continue button.",
-        "Clicking Continue navigates to the existing “Will You Be My Valentine?” screen without a full page reload.",
-        "All new user-facing UI labels added for this screen are written in English."
+        "Each screen renders a clearly visible Back and Next control positioned below the main content area (within the same centered layout/card).",
+        "Back/Next labels are in English and use centralized string constants (no hardcoded button text scattered across screens).",
+        "Back/Next navigation works without breaking existing per-screen actions (e.g., Gift buttons on the gifts screen, Yes/No actions on the Valentine screen, quiz answer behavior on Gift 1).",
+        "Sequential navigation order is consistent across the entire flow: Welcome → Will You Be My Valentine → Choose Your Gift → Gift 1 → Gift 2 → Gift 3 → Success (Back goes in reverse order)."
       ]
     },
     {
-      "id": "REQ-8",
-      "text": "Use the user-provided Tenor GIF URLs in the React app: set the default GIF on the “Will You Be My Valentine?” screen to https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif, and add/display the Gift 2 Kiss GIF (https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif) on the Gift 2 message screen similarly to the original HTML.",
+      "id": "REQ-15",
+      "text": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "<img src=\"https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif\"",
-          "<img src=\"https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif\""
+          "and add gif in each page"
         ]
       },
       "acceptanceCriteria": [
-        "The Valentine question screen initially renders the Hug GIF from https://media.tenor.com/wGUEcMJvn1gAAAAd/bubu-dudu-hug.gif (unless the user has previously customized it via the existing Change GIF UI).",
-        "The Gift 2 screen renders the Kiss GIF from https://media.tenor.com/tz2d6kItD0gAAAAd/bubu-dudu-kisses.gif above the message content.",
-        "If either Tenor GIF fails to load, the UI shows a sensible fallback (existing fallback behavior is preserved for the Valentine screen; Gift 2 has a graceful fallback rather than a broken image icon)."
+        "Every screen in the flow renders at least one GIF element (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1, Gift 2, Gift 3, Success).",
+        "For screens that already include a GIF (Welcome, Will You Be My Valentine, Gift 2), the GIF remains present after changes.",
+        "For screens that newly add a GIF, the GIF uses existing ASSETS entries (e.g., ASSETS.bubuDudu and/or the existing Tenor GIF URLs) and includes an English alt text.",
+        "If a GIF fails to load, the UI degrades gracefully (e.g., fallback container/text) without layout breakage."
       ]
     },
     {
-      "id": "REQ-9",
-      "text": "Update the ValentineFlow navigation model to include the new Welcome screen while preserving all existing screens, animations (falling hearts), and background music behavior.",
+      "id": "REQ-16",
+      "text": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Start build my website"
+          "msg-4"
         ]
       },
       "acceptanceCriteria": [
-        "ValentineFlow includes a new screen state for the Welcome screen and routes correctly between Welcome -> Valentine question -> Gifts -> Gift screens -> Success.",
-        "Falling hearts and background music controls remain visible/functional across the new Welcome screen and all existing screens.",
-        "No changes are made to read-only/immutable frontend paths (hooks and ui component sources)."
+        "New button labels and fallback labels are added to frontend/src/features/valentine/content/strings.ts and referenced from screens via STRINGS.",
+        "All new user-facing text added for this change is in English."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
-    "Backend must remain single-actor; no new backend services."
+    "Do not edit files under frontend/src/components/ui (read-only UI components); compose them as-is.",
+    "Do not edit any paths listed in SYSTEM_CONTEXT.frontend.immutablePaths.",
+    "Backend remains a single Motoko actor; no backend changes are required for this request."
   ],
   "nonGoals": [
-    "Implementing a backend canister or persistence changes in Motoko for this request.",
-    "Providing or generating the missing Rose GIF URL (it is not provided in the conversation).",
-    "Deployment/redeployment mechanics or guaranteeing a specific public URL (beyond ensuring the app builds and runs within the platform)."
+    "Do not change or remove the falling-hearts animation.",
+    "Do not change or remove background music behavior.",
+    "Do not redesign the overall Valentine theme beyond what is necessary to place the Back/Next controls and add GIFs."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

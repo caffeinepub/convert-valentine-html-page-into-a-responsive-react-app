@@ -1,26 +1,29 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T06:14:32.673Z",
-  "summary": "Diff implements the new Welcome screen and updates the ValentineFlow to start on it, while keeping falling hearts and background music visible across screens. It also sets the Valentine default GIF to the provided Hug Tenor URL (with existing fallback preserved) and adds the provided Kiss Tenor GIF to the Gift 2 screen with a graceful fallback UI.",
+  "generatedAt": "2026-02-08T07:14:44.412Z",
+  "summary": "Implemented reusable Back/Next controls with a centralized flow order, added a reusable GIF component with graceful fallback rendering, updated multiple Valentine screens to include GIFs and Back/Next controls, and extended centralized strings with new navigation and fallback labels.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Introduces a specific Tenor URL for the \"Rose GIF\" even though the BuildRequest explicitly notes that the Rose GIF URL is not provided and is a non-goal to generate/provide.",
-      "reason": "REQ-7 requires an image area for a Rose GIF but does not provide a URL; the request also states not to provide/generate the missing Rose GIF URL. The diff hardcodes a Rose Tenor URL anyway.",
+      "description": "Added chevron icons (left/right) to the Back/Next navigation buttons.",
+      "reason": "REQ-14 specifies persistent Back/Next controls and centralized labels, but does not request icons or specific iconography.",
       "evidence": [
-        "frontend/src/features/valentine/content/assets.ts"
+        "frontend/src/features/valentine/components/ValentineBackNextControls.tsx"
       ]
     }
   ],
-  "confidence": 0.78,
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/features/valentine/ValentineFlow.tsx",
-    "frontend/src/features/valentine/content/assets.ts",
+    "frontend/src/features/valentine/components/ValentineBackNextControls.tsx",
+    "frontend/src/features/valentine/components/ValentineGif.tsx",
+    "frontend/src/features/valentine/content/flowOrder.ts",
     "frontend/src/features/valentine/content/strings.ts",
-    "frontend/src/features/valentine/effects/useCustomValentineGif.ts",
+    "frontend/src/features/valentine/screens/ChooseYourGiftScreen.tsx",
+    "frontend/src/features/valentine/screens/Gift1QuestionScreen.tsx",
     "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+    "frontend/src/features/valentine/screens/Gift3ImagesScreen.tsx",
     "frontend/src/features/valentine/screens/SuccessScreen.tsx",
     "frontend/src/features/valentine/screens/WelcomeScreen.tsx",
     "frontend/src/features/valentine/screens/WillYouBeMyValentineScreen.tsx",

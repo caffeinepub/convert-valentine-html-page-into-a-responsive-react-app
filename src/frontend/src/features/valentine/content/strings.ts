@@ -26,15 +26,38 @@ export const STRINGS = {
   gift1: 'Gift 1',
   gift2: 'Gift 2',
   gift3: 'Gift 3',
+  giftsGifFallback: '🎁 Gifts',
   
-  // Gift 1 Question
-  gift1Question: 'Do you want me in your life forever? ♾️❤️',
-  option1Yes: '1. Yes',
-  option2No: '2. No',
-  option3Never: '3. Never',
-  option4Always: '4. Always 💞',
-  dontSayThat: 'Aise mat bolo na baby 😭',
-  neverImpossible: 'Never?? 😭😭 Impossible!',
+  // Gift 1 Quiz
+  quizQuestions: [
+    {
+      question: 'Do you want me in your life forever ♾️❤️',
+      options: ['a) yess', 'b) No', 'c) Never', 'd) Always'],
+      correctAnswer: 3, // d) Always
+    },
+    {
+      question: 'When does our relationship starts 😁',
+      options: ['a) 13 December 2020', 'b) 15 November 2021', 'c) 15 November 2020', 'd) 20 November 2021'],
+      correctAnswer: 2, // c) 15 November 2020
+    },
+    {
+      question: 'Are you happy with me?',
+      options: ['a) nooo', 'b) yess', 'c) not sure', 'd) yes of course'],
+      correctAnswer: 3, // d) yes of course
+    },
+    {
+      question: 'How much you love me?',
+      options: ['a) 10000%', 'b) unlimited ✨', 'c) 0%', 'd) i don\'t love you'],
+      correctAnswer: 1, // b) unlimited ✨
+    },
+    {
+      question: 'When we have our first kiss 💋',
+      options: ['a) 16 November 2020', 'b) 18 November 2020', 'c) 16 December 2021', 'd) 19 November 2021'],
+      correctAnswer: 1, // b) 18 November 2020
+    },
+  ],
+  correctAnswerMessage: 'Wow, you are intelligent.',
+  quizGifFallback: '❓ Quiz',
   
   // Gift 2 Message
   myLove: 'MY LOVE 💖',
@@ -50,13 +73,19 @@ export const STRINGS = {
   
   // Gift 3
   gift3Title: 'I LOVEEE UUUU BABY 💗\nMORE THAN ANYTHING 🌸✨❤️\nFOREVER AND EVER ❤️😘',
-  gift3Subtitle: 'Only us and our love 💞',
+  memoriesGifFallback: '📸 Memories',
   
   // Success screen
   successTitle: 'Yayyy my love!! ❤️♾️',
   successMessage: 'You chose the right answer 😘',
+  celebrationGifFallback: '🎉 Celebration',
   
   // Navigation
   backToGifts: 'Back to Gifts',
   startOver: 'Start Over',
+  backButton: 'Back',
+  nextButton: 'Next',
+  
+  // GIF fallback
+  gifFallback: '💝 Loading...',
 };

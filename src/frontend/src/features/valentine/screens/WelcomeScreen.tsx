@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ValentineLayout } from '../components/ValentineLayout';
+import { ValentineGif } from '../components/ValentineGif';
+import { ValentineBackNextControls } from '../components/ValentineBackNextControls';
 import { STRINGS } from '../content/strings';
 import { ASSETS } from '../content/assets';
 import type { Screen } from '../ValentineFlow';
@@ -21,26 +23,11 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
         </p>
         
         <div className="my-4">
-          <img
+          <ValentineGif
             src={ASSETS.roseGif}
             alt="Rose GIF"
-            className="h-auto w-64 rounded-2xl"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = target.nextElementSibling as HTMLElement;
-              if (fallback) {
-                fallback.style.display = 'flex';
-              }
-            }}
+            fallbackText={STRINGS.roseGifFallback}
           />
-          <div 
-            className="hidden h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-pink-300 bg-pink-50 dark:border-pink-700 dark:bg-pink-900/30"
-          >
-            <p className="text-pink-500 dark:text-pink-400">
-              {STRINGS.roseGifFallback}
-            </p>
-          </div>
         </div>
         
         <Button
@@ -50,6 +37,11 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
         >
           {STRINGS.continueButton} ➡️
         </Button>
+        
+        <ValentineBackNextControls
+          currentScreen="welcome"
+          onNavigate={onNavigate}
+        />
       </div>
     </ValentineLayout>
   );

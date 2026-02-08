@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ValentineLayout } from '../components/ValentineLayout';
+import { ValentineBackNextControls } from '../components/ValentineBackNextControls';
 import { STRINGS } from '../content/strings';
 import { ASSETS } from '../content/assets';
 import { useCustomValentineGif } from '../effects/useCustomValentineGif';
@@ -186,6 +187,11 @@ export function WillYouBeMyValentineScreen({ onNavigate }: WillYouBeMyValentineS
             {STRINGS.no} 😡
           </Button>
         </div>
+        
+        <ValentineBackNextControls
+          currentScreen="valentine"
+          onNavigate={onNavigate}
+        />
       </div>
     </ValentineLayout>
   );

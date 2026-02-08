@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 11,
   "summary": "Build a responsive React project version of an interactive Valentine-themed webpage (multi-page flow with animations, audio, and images).",
   "architectural_notes": [
     "Implement as a responsive React single-page app with component-based pages and state-driven navigation.",
@@ -82,6 +82,62 @@
         "REQ-9"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-remove-the-existing-just-us-content-section-from-the-valentine-flow-ui-currently-the-subtitle-text-shown-on-the-gift-3-images-screen-so-it-no-longer-renders-anywhere-in-the-app",
+      "title": "Remove the existing “Just Us” content/section from the Valentine flow UI (currently the subtitle text shown on the Gift 3 images screen) so it no longer renders anywhere in the app.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-convert-the-current-gift-1-screen-from-a-single-question-screen-into-an-mcq-quiz-consisting-of-these-5-questions-one-at-a-time-or-all-at-once-is-acceptable-each-with-four-options-a-d-and-with-the-specified-correct-answer-per-question-q1-do-you-want-me-in-your-life-forever-a-yes-b-no-c-never-d-always-correct-d-q2-when-did-our-relationship-start-a-13-december-2020-b-15-november-2021-c-15-november-2020-correct-c-d-20-november-2021-q3-are-you-happy-with-me-a-nooo-b-yes-c-not-sure-d-yes-of-course-correct-d-q4-how-much-do-you-love-me-a-10000-b-unlimited-correct-b-c-0-d-i-don-t-love-you-q5-when-did-we-have-our-first-kiss-a-16-november-2020-b-18-november-2020-correct-b-c-16-december-2021-d-19-november-2021-all-user-facing-text-for-this-quiz-must-be-in-english",
+      "title": "Convert the current Gift 1 screen from a single-question screen into an MCQ quiz consisting of these 5 questions (one-at-a-time or all-at-once is acceptable), each with four options A–D, and with the specified correct answer per question:\n\nQ1: “Do you want me in your life forever ♾️❤️”\nA) “Yes”\nB) “No”\nC) “Never”\nD) “Always”  (Correct: D)\n\nQ2: “When did our relationship start? 😁”\nA) “13 December 2020”\nB) “15 November 2021”\nC) “15 November 2020” (Correct: C)\nD) “20 November 2021”\n\nQ3: “Are you happy with me?”\nA) “Nooo”\nB) “Yes”\nC) “Not sure”\nD) “Yes, of course” (Correct: D)\n\nQ4: “How much do you love me?”\nA) “10000%”\nB) “Unlimited ✨” (Correct: B)\nC) “0%”\nD) “I don’t love you”\n\nQ5: “When did we have our first kiss? 💋”\nA) “16 November 2020”\nB) “18 November 2020” (Correct: B)\nC) “16 December 2021”\nD) “19 November 2021”\n\nAll user-facing text for this quiz must be in English.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-quiz-answer-feedback-behavior-on-the-gift-1-mcq-quiz-when-the-user-selects-a-wrong-option-show-a-clearly-visible-red-wrong-indicator-e-g-red-x-badge-and-or-red-highlighted-option-and-keep-the-user-on-the-same-question-when-the-user-selects-the-correct-option-show-a-popup-message-that-says-exactly-wow-you-are-intelligent-and-then-advance-to-the-next-question-or-if-it-was-the-final-question-navigate-to-the-existing-success-screen",
+      "title": "Implement quiz answer feedback behavior on the Gift 1 MCQ quiz: when the user selects a wrong option, show a clearly visible red wrong indicator (e.g., red X/badge and/or red-highlighted option) and keep the user on the same question; when the user selects the correct option, show a popup message that says exactly: “Wow, you are intelligent.” and then advance to the next question (or, if it was the final question, navigate to the existing Success screen).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-refactor-the-valentine-text-constants-to-support-the-new-gift-1-quiz-content-and-feedback-messages-centralizing-the-new-quiz-strings-in-the-existing-strings-module-and-removing-retiring-the-old-gift-1-single-question-option-strings-that-are-no-longer-used",
+      "title": "Refactor the Valentine text constants to support the new Gift 1 quiz content and feedback messages, centralizing the new quiz strings in the existing strings module and removing/retiring the old Gift 1 single-question option strings that are no longer used.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-persistent-back-and-next-navigation-controls-below-the-main-content-on-every-valentine-flow-screen-welcome-will-you-be-my-valentine-choose-your-gift-gift-1-quiz-gift-2-message-gift-3-images-success-so-users-can-move-sequentially-through-the-screens",
+      "title": "Add persistent \"Back\" and \"Next\" navigation controls below the main content on every Valentine flow screen (Welcome, Will You Be My Valentine, Choose Your Gift, Gift 1 Quiz, Gift 2 Message, Gift 3 Images, Success) so users can move sequentially through the screens.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-a-gif-on-every-valentine-flow-screen-including-screens-that-currently-do-not-show-a-gif-choose-your-gift-gift-1-quiz-gift-3-images-success-using-the-existing-asset-pipeline-and-safe-fallback-behavior-if-a-gif-fails-to-load",
+      "title": "Display a GIF on every Valentine flow screen, including screens that currently do not show a GIF (Choose Your Gift, Gift 1 Quiz, Gift 3 Images, Success), using the existing asset pipeline and safe fallback behavior if a GIF fails to load.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-centralized-strings-module-to-include-any-new-english-user-facing-text-introduced-by-the-back-next-controls-and-any-new-gif-fallback-labels-used-on-newly-updated-screens",
+      "title": "Update the centralized strings module to include any new English user-facing text introduced by the Back/Next controls and any new GIF fallback labels used on newly updated screens.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -106,6 +162,24 @@
     {
       "id": "AR-4",
       "summary": "Rebuild and redeploy the Valentine website to provide a clean, shareable public URL (shared-link website).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Replace the existing \"Just Us\" section with an MCQ questions section (likely on Gift 1 screen): present provided questions/options, track correct answers, show a visible red indicator on wrong choice, and show a \"woww you are intelligent\" popup on correct choice.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add Back/Next navigation controls on each page (below the content) to allow moving through the multi-page flow sequentially.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add/display a GIF on each page/screen of the Valentine flow (ensure every page includes an appropriate GIF element).",
       "reqIds": [],
       "status": "pending"
     }

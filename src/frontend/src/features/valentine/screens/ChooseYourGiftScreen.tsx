@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { ValentineLayout } from '../components/ValentineLayout';
+import { ValentineGif } from '../components/ValentineGif';
+import { ValentineBackNextControls } from '../components/ValentineBackNextControls';
 import { STRINGS } from '../content/strings';
+import { ASSETS } from '../content/assets';
 import type { Screen } from '../ValentineFlow';
 
 interface ChooseYourGiftScreenProps {
@@ -14,6 +17,14 @@ export function ChooseYourGiftScreen({ onNavigate }: ChooseYourGiftScreenProps) 
         <h1 className="valentine-title text-4xl font-bold text-pink-600 dark:text-pink-400 sm:text-5xl">
           {STRINGS.chooseYourGift}
         </h1>
+        
+        <div className="my-4">
+          <ValentineGif
+            src={ASSETS.hugGif}
+            alt="Hug GIF"
+            fallbackText={STRINGS.giftsGifFallback}
+          />
+        </div>
         
         <div className="flex w-full flex-col gap-4">
           <Button
@@ -38,6 +49,11 @@ export function ChooseYourGiftScreen({ onNavigate }: ChooseYourGiftScreenProps) 
             {STRINGS.gift3}
           </Button>
         </div>
+        
+        <ValentineBackNextControls
+          currentScreen="gifts"
+          onNavigate={onNavigate}
+        />
       </div>
     </ValentineLayout>
   );
