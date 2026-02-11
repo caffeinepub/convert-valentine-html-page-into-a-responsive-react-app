@@ -1,28 +1,85 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project involves deploying an Internet Computer (icp0.io) canister and providing a shareable draft/live URL; current deployments produce an unresolvable/missing canister ID URL.",
+  "summary": "Valentine website updates: fix scratch-to-reveal interaction, enhance Gift 2 letter with unfold + typing animation, add new Gift 4 page, and update Spin-the-Wheel to 5 attempts with new reward set and final rewards summary page while keeping all other design/layout unchanged.",
   "architectural_notes": [
-    "Deployment should be able to force creation of a fresh canister ID (not reuse a dead/invalid ID) and return a valid *.icp0.io canister URL."
+    "Spin-the-wheel flow must support exactly 5 spin attempts and persist/display the 5 obtained rewards on a final summary page.",
+    "Scope constraint: preserve existing pages/layout/animations except where explicitly updated."
   ],
   "known_issues": [
-    "Deployed URL returns “Canister ID Not Resolved” / appears to lack a valid canister ID, preventing sharing a working draft link."
+    "Scratch-to-reveal area currently renders but nothing shows / does not function (needs fix)."
   ],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-create-a-brand-new-internet-computer-canister-do-not-reuse-the-existing-invalid-canister-id-and-redeploy-the-full-app-so-the-resulting-public-url-resolves-successfully-no-icp-gateway-canister-id-not-resolved-error-400-and-can-be-shared-as-a-working-draft-link",
-      "title": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
+      "id": "feature-fix-the-existing-scratch-to-reveal-canvas-so-scratching-visibly-erases-the-overlay-and-reliably-reveals-the-content-underneath-on-both-mouse-and-touch-devices",
+      "title": "Fix the existing scratch-to-reveal canvas so scratching visibly erases the overlay and reliably reveals the content underneath on both mouse and touch devices.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-fix-frontend-backend-canister-id-resolution-so-it-reliably-reads-the-deployed-backend-canister-id-from-env-json-and-or-vite-environment-variables-without-typescript-runtime-errors-ensuring-the-deployed-frontend-always-points-at-the-newly-created-backend-canister",
-      "title": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+      "id": "feature-implement-a-scratch-completion-threshold-for-the-scratch-to-reveal-feature-once-the-user-scratches-enough-area-transition-to-the-final-reveal-state",
+      "title": "Implement a scratch-completion threshold for the scratch-to-reveal feature; once the user scratches enough area, transition to the final reveal state.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-scratch-to-reveal-reveal-visuals-to-match-the-requested-content-a-large-pulsing-heart-kiss-pop-floating-animation-and-the-message-text-love-you-cutie-replacing-any-existing-reveal-message-text",
+      "title": "Update the scratch-to-reveal reveal visuals to match the requested content: a large pulsing heart, kiss pop/floating animation, and the message text \"Love you cutie 🥰😘\" (replacing any existing reveal message text).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-gift-2-ensure-the-letter-content-is-displayed-with-a-typing-animation-and-that-a-click-to-unfold-envelope-opening-animation-happens-before-typing-begins",
+      "title": "Gift 2: Ensure the letter content is displayed with a typing animation, and that a click-to-unfold (envelope opening) animation happens before typing begins.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-gift-4-ensure-there-is-a-gift-4-screen-in-the-flow-after-gift-3-that-uses-the-same-scratch-to-reveal-effect-and-reveal-content-described-pulsing-heart-floating-kisses-and-love-you-cutie-text",
+      "title": "Gift 4: Ensure there is a Gift 4 screen in the flow after Gift 3 that uses the same scratch-to-reveal effect and reveal content described (pulsing heart, floating kisses, and \"Love you cutie 🥰😘\" text).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-spin-the-wheel-page-add-the-exact-pre-spin-note-text-before-the-wheel-controls-and-keep-the-wheel-limited-to-5-attempts-spins",
+      "title": "Spin the Wheel page: Add the exact pre-spin note text before the wheel/controls, and keep the wheel limited to 5 attempts/spins.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-spin-the-wheel-page-replace-the-wheel-reward-list-by-removing-date-night-massage-and-movie-night-and-using-exactly-the-provided-11-rewards-with-their-exact-labels-emojis-and-messages",
+      "title": "Spin the Wheel page: Replace the wheel reward list by removing Date Night, Massage, and Movie Night, and using exactly the provided 11 rewards with their exact labels/emojis and messages.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-all-5-spins-show-a-final-reward-summary-page-that-lists-all-5-rewards-the-user-received-and-shows-the-provided-sweet-message-exactly",
+      "title": "After all 5 spins, show a final reward summary page that lists all 5 rewards the user received and shows the provided sweet message exactly.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-do-not-change-any-other-pages-designs-animations-or-layout-outside-of-the-updates-explicitly-requested-scratch-to-reveal-behavior-visuals-gift-2-letter-behavior-gift-4-content-placement-and-spin-wheel-text-rewards-summary",
+      "title": "Do not change any other pages, designs, animations, or layout outside of the updates explicitly requested (scratch-to-reveal behavior/visuals, Gift 2 letter behavior, Gift 4 content/placement, and Spin Wheel text/rewards/summary).",
+      "reqIds": [
+        "REQ-9"
       ],
       "version": 1
     }
@@ -30,12 +87,48 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Create a brand-new IC canister and redeploy to generate a working shareable draft URL",
+      "summary": "Fix existing Scratch-to-Reveal area so it displays and functions; on sufficient scratch reveal a pulsing big heart, kissing pop/floating animation, and show text “Love you cutie 🥰😘”.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Gift 2: Add click-to-unfold animation for the letter, then a typing animation for the letter content.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add a new Gift 4 page after Gift 3 featuring the same scratch-to-reveal effect (scratch screen, pulsing heart, floating kisses, “Love you cutie 🥰😘” text).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Spin-the-Wheel page: add pre-spin note “You will get 5 attempts! Whatever you win from the spins… I will give you ALL of them in real 😩💕” and enforce 5 attempts.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Update wheel rewards list: remove Date Night, Massage, Movie Night; replace with provided 11 rewards each with its specified message.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "After all 5 spins, show a final reward summary page listing all 5 rewards and the provided screenshot/share message.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Constraint: Do not change any other pages, designs, animations, or layout beyond the requested updates.",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Create a brand-new IC canister and redeploy to fix “Canister ID Not Resolved”",
+  "projectName": "Fix scratch-to-reveal heart + enhance Gift 2 letter + add/update Gift 4 + update Spin Wheel rewards and 5-spin summary",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

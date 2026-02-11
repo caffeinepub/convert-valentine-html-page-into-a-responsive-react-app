@@ -9,6 +9,8 @@ export const FLOW_ORDER: Screen[] = [
   'gift1',
   'gift2',
   'gift3',
+  'gift4',
+  'spinWheel',
   'cuddleHug',
   'finalSurprise',
 ];

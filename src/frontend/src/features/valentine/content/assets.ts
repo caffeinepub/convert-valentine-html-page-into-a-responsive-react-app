@@ -15,8 +15,8 @@ export const ASSETS = {
   // Gift 2 Message GIF (5th page) - Updated to new GIF
   gift2MessageGif: 'https://media.tenor.com/8Xxc-MCPxOAAAAAi/sseeyall-bubu-dudu.gif',
   
-  // Cuddle/Hug screen GIF - Updated to exact user-provided URL
-  cuddleHugGif: 'https://tenor.com/view/bubu-dudu-bride-dancing-excited-gif-6374626551317323786',
+  // Cuddle/Hug screen - Updated to Tenor kiss GIF
+  cuddleHugGif: 'https://media.tenor.com/hYdr42jKPtoAAAAi/kiss.gif',
   
   // Gift 1 Quiz per-question GIFs
   quizQuestionGifs: [
@@ -30,6 +30,6 @@ export const ASSETS = {
   // Final Surprise box GIF
   surpriseBoxGif: 'https://media.tenor.com/Myfbtk1gOAgAAAAi/h%E1%BB%99p-qu%C3%A0-h%C3%A0ng-rong.gif',
   
-  // Music
-  music: '/assets/music.mp3',
+  // Music - Romantic Music (updated to user-provided MP3 URL)
+  music: 'https://orangefreesounds.com/wp-content/uploads/2023/02/Romantic-background-music-intro.mp3',
 };

@@ -48,6 +48,13 @@ export function ChooseYourGiftScreen({ onNavigate }: ChooseYourGiftScreenProps) 
           >
             {STRINGS.gift3}
           </Button>
+          <Button
+            onClick={() => onNavigate('gift4')}
+            size="lg"
+            className="valentine-button h-16 text-2xl"
+          >
+            {STRINGS.gift4}
+          </Button>
         </div>
         
         <ValentineBackNextControls

@@ -1,41 +1,123 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T10:10:18.087Z",
+  "generatedAt": "2026-02-11T12:28:07.815Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 9,
+    "implemented": 9,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
+        "summary": "Fix the existing scratch-to-reveal canvas so scratching visibly erases the overlay and reliably reveals the content underneath on both mouse and touch devices.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/DEPLOYMENT_DRAFT_LINK.md",
-          "frontend/.env.example"
+          "frontend/src/features/valentine/components/ScratchHeart.tsx"
         ],
         "matchedFiles": [
-          "frontend/DEPLOYMENT_DRAFT_LINK.md",
-          "frontend/.env.example"
+          "frontend/src/features/valentine/components/ScratchHeart.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+        "summary": "Implement a scratch-completion threshold for the scratch-to-reveal feature; once the user scratches enough area, transition to the final reveal state.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/canisterId.ts",
-          "frontend/src/main.tsx",
-          "frontend/src/config.ts",
-          "frontend/src/hooks/useActor.ts",
-          "frontend/src/hooks/useInternetIdentity.ts"
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/features/valentine/effects/useKissBurst.ts"
         ],
         "matchedFiles": [
-          "frontend/src/canisterId.ts"
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/features/valentine/effects/useKissBurst.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the scratch-to-reveal reveal visuals to match the requested content: a large pulsing heart, kiss pop/floating animation, and the message text \"Love you cutie 🥰😘\" (replacing any existing reveal message text).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Gift 2: Ensure the letter content is displayed with a typing animation, and that a click-to-unfold (envelope opening) animation happens before typing begins.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/components/EnvelopeLetter.tsx",
+          "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Gift 4: Ensure there is a Gift 4 screen in the flow after Gift 3 that uses the same scratch-to-reveal effect and reveal content described (pulsing heart, floating kisses, and \"Love you cutie 🥰😘\" text).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/content/flowOrder.ts",
+          "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Spin the Wheel page: Add the exact pre-spin note text before the wheel/controls, and keep the wheel limited to 5 attempts/spins.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Spin the Wheel page: Replace the wheel reward list by removing Date Night, Massage, and Movie Night, and using exactly the provided 11 rewards with their exact labels/emojis and messages.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "After all 5 spins, show a final reward summary page that lists all 5 rewards the user received and shows the provided sweet message exactly.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Do not change any other pages, designs, animations, or layout outside of the updates explicitly requested (scratch-to-reveal behavior/visuals, Gift 2 letter behavior, Gift 4 content/placement, and Spin Wheel text/rewards/summary).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "frontend/src/index.css"
         ]
       }
     ]
@@ -45,9 +127,11 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/.env.example",
-    "frontend/DEPLOYMENT_DRAFT_LINK.md",
-    "frontend/src/canisterId.ts",
+    "frontend/src/features/valentine/components/ScratchHeart.tsx",
+    "frontend/src/features/valentine/effects/useKissBurst.ts",
+    "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx",
+    "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+    "frontend/src/index.css",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

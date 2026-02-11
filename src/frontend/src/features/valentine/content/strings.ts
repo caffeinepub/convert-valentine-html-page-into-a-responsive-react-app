@@ -31,6 +31,7 @@ export const STRINGS = {
   gift1: 'Gift 1',
   gift2: 'Gift 2',
   gift3: 'Gift 3',
+  gift4: 'Gift 4',
   giftsGifFallback: '🎁 Gifts',
   
   // Gift 1 Quiz
@@ -58,10 +59,11 @@ export const STRINGS = {
     {
       question: 'When did we have our first kiss 💋',
       options: ['a) 16 November 2020', 'b) 18 November 2020', 'c) 16 December 2021', 'd) 19 November 2021'],
-      correctAnswer: 1, // b) 18 November 2020 - CORRECTED
+      correctAnswer: 1, // b) 18 November 2020
     },
   ],
   correctAnswerMessage: 'Wow, you are intelligent.',
+  incorrectAnswerMessage: 'Oh no! That\'s not correct 😤😩\nPlease try again!',
   quizGifFallback: '❓ Quiz',
   
   // Gift 2 Message
@@ -80,9 +82,9 @@ export const STRINGS = {
   gift3Title: 'I LOVEEE UUUU BABY 💗\nMORE THAN ANYTHING 🌸✨❤️\nFOREVER AND EVER ❤️😘',
   memoriesGifFallback: '📸 Memories',
   
-  // Cuddle/Hug screen
+  // Cuddle/Hug screen - Updated fallback to be photo-appropriate
   cuddleHugText: 'APOORVA LOVES 😘💞 SHIVA',
-  cuddleHugGifFallback: '🤗 Cuddle & Hug',
+  cuddleHugFallback: '🤗 Apoorva & Shiva',
   
   // Final Surprise screen
   finalSurpriseTitle: 'Final Surprise Baby ❤️✨',
@@ -100,6 +102,6 @@ export const STRINGS = {
   backButton: 'Back',
   nextButton: 'Next',
   
-  // GIF fallback
+  // GIF fallback - Generic for all media types
   gifFallback: '💝 Loading...',
 };

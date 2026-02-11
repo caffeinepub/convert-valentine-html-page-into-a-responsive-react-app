@@ -1,56 +1,77 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T10:10:18.085Z",
-  "summary": "Diff updates frontend canister ID resolution to use Vite env vars and adds deployment-related documentation/examples, but does not implement creating/redeploying a fresh IC canister nor the required runtime /env.json-based canister ID resolution.",
+  "generatedAt": "2026-02-11T12:28:07.812Z",
+  "summary": "Diff adds a kiss-burst hook, updates ScratchHeart canvas initialization and scratch-completion logic, introduces a new Gift4ScratchHeartScreen, and updates SpinTheWheelOfLoveScreen with a 5-attempt state and a new 11-item rewards array. However, several requested exact texts/visual reveal requirements are not evidenced in the provided diff summary, and there are additional unrelated theme/style and asset changes not requested.",
   "missing_requirements": [
     {
-      "id": "REQ-1",
-      "requirement": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
-      "reason": "The diff contains only frontend/documentation changes and no deployment/dfx configuration changes or scripts that would create a new canister ID, stop referencing the old ID, or demonstrate a successful redeploy/shareable icp0.io URL.",
+      "id": "REQ-3",
+      "requirement": "Update the scratch-to-reveal reveal visuals to match the requested content: a large pulsing heart, kiss pop/floating animation, and the message text \"Love you cutie 🥰😘\".",
+      "reason": "The diff shows scratch overlay drawing and completion detection, plus kiss particles via useKissBurst, but does not show any implemented reveal-state UI containing a large pulsing heart and the exact message text \"Love you cutie 🥰😘\". The ScratchHeart.tsx diff is truncated before any reveal render, and Gift4ScratchHeartScreen only shows the ScratchHeart plus kiss particles overlay (no heart/message shown).",
       "evidence": [
-        "frontend/DEPLOYMENT_DRAFT_LINK.md",
-        "project_state.json"
+        "frontend/src/features/valentine/components/ScratchHeart.tsx",
+        "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx",
+        "frontend/src/features/valentine/effects/useKissBurst.ts"
       ]
     },
     {
-      "id": "REQ-2",
-      "requirement": "Frontend must read BACKEND_CANISTER_ID from /env.json when present; otherwise fall back to VITE_BACKEND_CANISTER_ID or VITE_CANISTER_ID_BACKEND; fail gracefully with clear console output.",
-      "reason": "frontend/src/canisterId.ts only reads Vite env vars and does not attempt to fetch/read /env.json at runtime. The required priority order (env.json first, then env vars) is therefore not implemented.",
+      "id": "REQ-4",
+      "requirement": "Gift 2: Ensure the letter content is displayed with a typing animation, and that a click-to-unfold (envelope opening) animation happens before typing begins.",
+      "reason": "No code diff for Gift2MessageScreen.tsx is provided in the modified-files list; only a documentation-like summary mentions it. Based strictly on the diff summary evidence, the required behavior cannot be confirmed as implemented.",
       "evidence": [
-        "frontend/src/canisterId.ts"
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Gift 4: Ensure there is a Gift 4 screen in the flow after Gift 3 that uses the same scratch-to-reveal effect and reveal content described.",
+      "reason": "A new Gift4ScratchHeartScreen component exists, but the diff summary does not show updates to the navigation/flow controller to place Gift 4 directly after Gift 3, nor does it show Gift 4’s completed reveal state containing the pulsing heart + exact text.",
+      "evidence": [
+        "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Spin the Wheel page: Add the exact pre-spin note text before the wheel/controls.",
+      "reason": "SpinTheWheelOfLoveScreen implements 5 attempts and spin prevention at 0, but the diff excerpt does not show rendering the exact required pre-spin note string before the wheel/controls (file is truncated).",
+      "evidence": [
+        "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "After all 5 spins, show a final reward summary page that lists all 5 rewards the user received and shows the provided sweet message exactly.",
+      "reason": "The diff shows a summary view after attempts reach 0 and displays a \"Your Rewards 🎉\" heading and a list of wonRewards, but the required exact sweet message text (with specified line breaks) is not visible in the provided truncated summary render.",
+      "evidence": [
+        "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added a deployment/shareable URL guide document (including checklist and URL format section).",
-      "reason": "BuildRequest asks to create a new canister and fix canister ID resolution; it does not request adding new documentation files.",
+      "description": "Update/replace the Romantic Music track URL in assets.",
+      "reason": "BuildRequest explicitly says updates should be frontend-only and limited to scratch/Gift 2/Gift 4/spin wheel changes; changing the background music file path is not requested and may violate the \"do not change other pages/design\" constraint.",
       "evidence": [
-        "frontend/DEPLOYMENT_DRAFT_LINK.md"
+        "frontend-file-summaries.txt (mentions frontend/src/features/valentine/content/assets.ts updated music URL)"
       ]
     },
     {
-      "description": "Introduced host resolution helper (getHost) with logic for local/mainnet defaults.",
-      "reason": "REQ-2 is specifically about backend canister ID resolution from env.json/env vars; host selection behavior was not requested.",
+      "description": "Broad global theme/style changes (OKLCH color system, new global component classes, additional animations beyond requested areas).",
+      "reason": "The request requires keeping all other pages, designs, animations, and layout exactly the same outside the explicitly requested updates. The diff shows substantial changes/additions in global CSS, which may affect unrelated screens.",
       "evidence": [
-        "frontend/src/canisterId.ts"
-      ]
-    },
-    {
-      "description": "Added/modified a frontend .env example file with deployment guidance text.",
-      "reason": "Not explicitly requested by the BuildRequest requirements; it is ancillary documentation/config guidance rather than the required env.json runtime resolution behavior.",
-      "evidence": [
-        "frontend/.env.example"
+        "frontend/src/index.css"
       ]
     }
   ],
-  "confidence": 0.78,
+  "confidence": 0.68,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/.env.example",
-    "frontend/DEPLOYMENT_DRAFT_LINK.md",
-    "frontend/src/canisterId.ts",
+    "frontend/src/features/valentine/components/ScratchHeart.tsx",
+    "frontend/src/features/valentine/effects/useKissBurst.ts",
+    "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx",
+    "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+    "frontend/src/index.css",
     "project_state.json"
   ]
 }

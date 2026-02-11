@@ -6,11 +6,26 @@ import { ASSETS } from '../content/assets';
 export function BackgroundMusicControl() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const audio = new Audio(ASSETS.music);
     audio.loop = true;
     audioRef.current = audio;
+
+    // Handle audio loading errors
+    const handleError = () => {
+      console.warn('Failed to load audio file');
+      setHasError(true);
+      setIsPlaying(false);
+    };
+
+    const handleCanPlay = () => {
+      setHasError(false);
+    };
+
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('canplay', handleCanPlay);
 
     // Attempt autoplay (may be blocked by browser)
     const playPromise = audio.play();
@@ -20,29 +35,38 @@ export function BackgroundMusicControl() {
           setIsPlaying(true);
         })
         .catch(() => {
-          // Autoplay blocked, user will need to click play
+          // Autoplay blocked by browser, user will need to click play
+          // This is not an error - just browser policy
           setIsPlaying(false);
         });
     }
 
     return () => {
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('canplay', handleCanPlay);
       audio.pause();
       audio.src = '';
     };
   }, []);
 
   const togglePlay = () => {
-    if (!audioRef.current) return;
+    if (!audioRef.current || hasError) return;
 
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {
-        // Handle play error
-      });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            console.warn('Failed to play audio:', error);
+            setIsPlaying(false);
+          });
+      }
     }
   };
 
@@ -53,6 +77,9 @@ export function BackgroundMusicControl() {
         size="icon"
         variant="outline"
         className="h-12 w-12 rounded-full bg-white/90 shadow-lg backdrop-blur-sm hover:bg-white dark:bg-pink-950/90 dark:hover:bg-pink-950"
+        aria-label={isPlaying ? 'Pause Romantic Music' : 'Play Romantic Music'}
+        disabled={hasError}
+        title={hasError ? 'Music unavailable' : isPlaying ? 'Pause Romantic Music' : 'Play Romantic Music'}
       >
         {isPlaying ? (
           <Volume2 className="h-5 w-5 text-pink-600 dark:text-pink-400" />

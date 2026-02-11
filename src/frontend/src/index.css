@@ -1,187 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --radius: 0.625rem;
-        --background: 0.95 0.15 10;
-        --foreground: 0.145 0 0;
-        --card: 1 0 0;
-        --card-foreground: 0.145 0 0;
-        --popover: 1 0 0;
-        --popover-foreground: 0.145 0 0;
-        --primary: 0.55 0.22 355;
-        --primary-foreground: 0.985 0 0;
-        --secondary: 0.97 0.08 350;
-        --secondary-foreground: 0.205 0 0;
-        --muted: 0.97 0.05 340;
-        --muted-foreground: 0.556 0.08 350;
-        --accent: 0.92 0.12 345;
-        --accent-foreground: 0.205 0 0;
-        --destructive: 0.577 0.245 27.325;
-        --destructive-foreground: 0.985 0 0;
-        --border: 0.88 0.08 350;
-        --input: 0.88 0.08 350;
-        --ring: 0.65 0.18 355;
-        --chart-1: 0.646 0.222 355;
-        --chart-2: 0.6 0.118 340;
-        --chart-3: 0.398 0.07 350;
-        --chart-4: 0.828 0.189 345;
-        --chart-5: 0.769 0.188 355;
-        --sidebar: 0.985 0 0;
-        --sidebar-foreground: 0.145 0 0;
-        --sidebar-primary: 0.55 0.22 355;
-        --sidebar-primary-foreground: 0.985 0 0;
-        --sidebar-accent: 0.97 0.08 350;
-        --sidebar-accent-foreground: 0.205 0 0;
-        --sidebar-border: 0.88 0.08 350;
-        --sidebar-ring: 0.65 0.18 355;
-    }
+  :root {
+    /* Valentine-themed OKLCH color system */
+    --background: oklch(98% 0.01 330);
+    --foreground: oklch(25% 0.02 330);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(25% 0.02 330);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(25% 0.02 330);
+    --primary: oklch(65% 0.25 350);
+    --primary-foreground: oklch(100% 0 0);
+    --secondary: oklch(90% 0.05 330);
+    --secondary-foreground: oklch(25% 0.02 330);
+    --muted: oklch(95% 0.02 330);
+    --muted-foreground: oklch(50% 0.02 330);
+    --accent: oklch(85% 0.15 340);
+    --accent-foreground: oklch(25% 0.02 330);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(100% 0 0);
+    --border: oklch(90% 0.02 330);
+    --input: oklch(90% 0.02 330);
+    --ring: oklch(65% 0.25 350);
+    --radius: 0.5rem;
+    --chart-1: oklch(65% 0.25 350);
+    --chart-2: oklch(75% 0.20 340);
+    --chart-3: oklch(70% 0.18 330);
+    --chart-4: oklch(80% 0.15 320);
+    --chart-5: oklch(60% 0.22 10);
+  }
 
-    .dark {
-        --background: 0.25 0.12 355;
-        --foreground: 0.985 0.05 350;
-        --card: 0.30 0.15 355;
-        --card-foreground: 0.985 0.05 350;
-        --popover: 0.35 0.15 355;
-        --popover-foreground: 0.985 0.05 350;
-        --primary: 0.75 0.18 350;
-        --primary-foreground: 0.205 0.12 355;
-        --secondary: 0.35 0.15 355;
-        --secondary-foreground: 0.985 0.05 350;
-        --muted: 0.35 0.12 350;
-        --muted-foreground: 0.708 0.10 345;
-        --accent: 0.45 0.18 345;
-        --accent-foreground: 0.985 0.05 350;
-        --destructive: 0.704 0.191 22.216;
-        --destructive-foreground: 0.205 0 0;
-        --border: 0.40 0.15 355;
-        --input: 0.40 0.15 355;
-        --ring: 0.60 0.15 350;
-        --chart-1: 0.65 0.20 355;
-        --chart-2: 0.696 0.17 340;
-        --chart-3: 0.769 0.188 345;
-        --chart-4: 0.627 0.265 350;
-        --chart-5: 0.645 0.246 355;
-        --sidebar: 0.30 0.15 355;
-        --sidebar-foreground: 0.985 0.05 350;
-        --sidebar-primary: 0.75 0.18 350;
-        --sidebar-primary-foreground: 0.985 0.05 350;
-        --sidebar-accent: 0.35 0.15 355;
-        --sidebar-accent-foreground: 0.985 0.05 350;
-        --sidebar-border: 0.40 0.15 355;
-        --sidebar-ring: 0.60 0.15 350;
-    }
+  .dark {
+    --background: oklch(20% 0.02 330);
+    --foreground: oklch(95% 0.01 330);
+    --card: oklch(22% 0.02 330);
+    --card-foreground: oklch(95% 0.01 330);
+    --popover: oklch(22% 0.02 330);
+    --popover-foreground: oklch(95% 0.01 330);
+    --primary: oklch(70% 0.22 350);
+    --primary-foreground: oklch(20% 0.02 330);
+    --secondary: oklch(30% 0.05 330);
+    --secondary-foreground: oklch(95% 0.01 330);
+    --muted: oklch(30% 0.02 330);
+    --muted-foreground: oklch(65% 0.02 330);
+    --accent: oklch(35% 0.12 340);
+    --accent-foreground: oklch(95% 0.01 330);
+    --destructive: oklch(50% 0.20 25);
+    --destructive-foreground: oklch(95% 0.01 330);
+    --border: oklch(30% 0.02 330);
+    --input: oklch(30% 0.02 330);
+    --ring: oklch(70% 0.22 350);
+    --chart-1: oklch(70% 0.22 350);
+    --chart-2: oklch(75% 0.18 340);
+    --chart-3: oklch(65% 0.15 330);
+    --chart-4: oklch(80% 0.12 320);
+    --chart-5: oklch(55% 0.20 10);
+  }
+}
 
-    * {
-        @apply border-border;
-    }
-    
-    body {
-        @apply bg-background text-foreground;
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-        background: linear-gradient(135deg, #ffd6e8 0%, #ffb3d9 50%, #ffa0cc 100%);
-        min-height: 100vh;
-    }
-    
-    .dark body {
-        background: linear-gradient(135deg, #4a1942 0%, #6b2456 50%, #8b3066 100%);
-    }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
 }
 
 @layer components {
-    .valentine-title {
-        text-shadow: 0 2px 10px rgba(236, 72, 153, 0.3);
-    }
-    
-    .valentine-card {
-        box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
-    }
-    
-    .valentine-button {
-        @apply bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95;
-    }
-    
-    .valentine-button-outline {
-        @apply border-2 border-pink-500 text-pink-600 hover:bg-pink-50 dark:border-pink-400 dark:text-pink-400 dark:hover:bg-pink-950/50 font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95;
-    }
-    
-    .glow-text {
-        text-shadow: 0 0 10px rgba(236, 72, 153, 0.5), 0 0 20px rgba(236, 72, 153, 0.3);
-    }
-    
-    .heart-fall {
-        animation: fall linear forwards;
-        will-change: transform;
-    }
-    
-    .love-box {
-        border: 2px solid oklch(var(--primary));
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        box-shadow: 0 0 25px rgba(255, 0, 120, 0.3);
-        background: rgba(255, 255, 255, 0.9);
-    }
-    
-    .dark .love-box {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: oklch(var(--primary));
-    }
-    
-    .pop-out-animation {
-        animation: popOut 0.6s ease forwards;
-    }
-    
-    .sparkle-particle {
-        position: fixed;
-        width: 12px;
-        height: 12px;
-        background: radial-gradient(circle, white, pink);
-        border-radius: 50%;
-        pointer-events: none;
-        animation: sparkleFade 1s linear forwards;
-        z-index: 99999;
-    }
+  .love-box {
+    @apply rounded-2xl border-4 border-pink-400 bg-gradient-to-br from-pink-50 to-rose-100 p-8 shadow-2xl dark:border-pink-600 dark:from-pink-950 dark:to-rose-950;
+  }
+
+  .valentine-title {
+    @apply animate-pop-out;
+  }
+
+  .valentine-button {
+    @apply transform bg-gradient-to-r from-pink-500 to-rose-500 font-bold text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-rose-600 active:scale-95;
+  }
+
+  /* Envelope container and animations */
+  .envelope-container {
+    @apply relative cursor-pointer transition-transform duration-300 hover:scale-105;
+    perspective: 1000px;
+  }
+
+  .envelope-container.opening {
+    @apply pointer-events-none;
+  }
+
+  .envelope {
+    @apply relative;
+    width: 200px;
+    height: 140px;
+  }
+
+  .envelope-body {
+    @apply absolute bottom-0 left-0 right-0;
+    height: 100px;
+    background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+    border: 3px solid #ec4899;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .envelope-flap {
+    @apply absolute top-0 left-0 right-0;
+    height: 80px;
+    background: linear-gradient(135deg, #f9a8d4, #f472b6);
+    border: 3px solid #ec4899;
+    border-bottom: none;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: 50% 0%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+  }
+
+  .envelope-container.opening .envelope-flap {
+    transform: rotateX(-180deg);
+  }
+
+  .envelope-letter {
+    @apply absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    z-index: 1;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .envelope-container.opening .envelope-letter {
+    transform: translate(-50%, -80%);
+  }
+
+  /* Typewriter effect */
+  .typewriter-cursor {
+    @apply inline-block h-6 w-1 animate-blink bg-pink-600;
+  }
+
+  /* Scratch heart container */
+  .scratch-heart-container {
+    @apply relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-3xl shadow-2xl;
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+    border: 6px solid #ec4899;
+  }
+
+  .dark .scratch-heart-container {
+    background: linear-gradient(135deg, #831843 0%, #9f1239 100%);
+    border-color: #f472b6;
+  }
+
+  .heart-background {
+    @apply absolute inset-0 flex flex-col items-center justify-center;
+    z-index: 1;
+  }
+
+  .big-heart {
+    @apply text-9xl animate-heartbeat;
+  }
+
+  .heart-message {
+    @apply mt-4 text-3xl font-bold text-pink-600;
+  }
+
+  .dark .heart-message {
+    @apply text-pink-300;
+  }
+
+  .scratch-canvas {
+    @apply absolute inset-0 cursor-pointer;
+    z-index: 2;
+    touch-action: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Scratch fallback */
+  .scratch-fallback {
+    @apply absolute inset-0 flex items-center justify-center bg-pink-200/80 dark:bg-pink-900/80;
+    z-index: 2;
+  }
+
+  .scratch-fallback-text {
+    @apply px-6 py-4 text-center text-lg font-semibold text-pink-800 dark:text-pink-200;
+  }
+
+  /* Kiss burst particles - float upward from center */
+  .kiss-burst-particle {
+    @apply pointer-events-none absolute animate-kiss-burst text-5xl;
+  }
 }
 
 @layer utilities {
-    @keyframes fall {
-        0% {
-            transform: translateY(-10vh) translateX(0) rotate(0deg);
-            opacity: 0.8;
-        }
-        50% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(110vh) translateX(20px) rotate(15deg);
-            opacity: 0.6;
-        }
+  /* Falling hearts animation */
+  @keyframes fall {
+    0% {
+      transform: translateY(-10vh) rotate(0deg);
+      opacity: 1;
     }
-    
-    @keyframes popOut {
-        0% {
-            transform: scale(0.1);
-            opacity: 0;
-        }
-        60% {
-            transform: scale(1.15);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(1);
-        }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
     }
-    
-    @keyframes sparkleFade {
-        from {
-            opacity: 1;
-            transform: scale(1);
-        }
-        to {
-            opacity: 0;
-            transform: scale(2);
-        }
+  }
+
+  .animate-fall {
+    animation: fall linear forwards;
+  }
+
+  /* Pop-out animation */
+  @keyframes pop-out {
+    0% {
+      transform: scale(0);
+      opacity: 0;
     }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-pop-out {
+    animation: pop-out 0.5s ease-out;
+  }
+
+  /* Sparkle fade animation */
+  @keyframes sparkle-fade {
+    0% {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(180deg);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0) rotate(360deg);
+    }
+  }
+
+  .animate-sparkle-fade {
+    animation: sparkle-fade 1s ease-out forwards;
+  }
+
+  /* Question transition */
+  @keyframes question-enter {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-question-enter {
+    animation: question-enter 0.4s ease-out;
+  }
+
+  /* Typewriter blink */
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Heartbeat animation */
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    10%, 30% {
+      transform: scale(1.15);
+    }
+    20%, 40% {
+      transform: scale(0.95);
+    }
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.3s ease-in-out infinite;
+  }
+
+  /* Kiss burst animation - float upward */
+  @keyframes kiss-burst {
+    0% {
+      transform: translateY(0) scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+      transform: translateY(-20px) scale(1) rotate(10deg);
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-300px) scale(0.3) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-kiss-burst {
+    animation: kiss-burst 3.5s ease-out forwards;
+  }
+}
+
+/* Spin the Wheel styles */
+.spin-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #ec4899;
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+  overflow: hidden;
+}
+
+.spin-wheel-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.spin-wheel-segment-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(calc(360deg / 22));
+  text-align: center;
+  max-width: 80px;
+}
+
+.spin-wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.spin-wheel-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  color: #ec4899;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 20;
+}
+
+.spin-wheel-mystery-glow {
+  animation: spin-wheel-glow-pulse 2s ease-in-out infinite;
+  position: relative;
+}
+
+.spin-wheel-mystery-glow::before {
+  content: '✨';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: 30px;
+  animation: spin-wheel-sparkle 1.5s ease-in-out infinite;
+}
+
+.spin-wheel-mystery-glow::after {
+  content: '✨';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: 30px;
+  animation: spin-wheel-sparkle 1.5s ease-in-out infinite 0.75s;
+}
+
+@keyframes spin-wheel-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.6);
+  }
+}
+
+@keyframes spin-wheel-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+.spin-wheel-summary {
+  position: relative;
+  overflow: hidden;
+}
+
+.spin-wheel-summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(236, 72, 153, 0.1) 50%,
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  animation: spin-wheel-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes spin-wheel-shimmer {
+  0% {
+    background-position: 100% 100%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.spin-wheel-reward-item {
+  animation: spin-wheel-slide-in 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes spin-wheel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

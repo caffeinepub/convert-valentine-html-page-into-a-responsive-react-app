@@ -1,62 +1,184 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix frontend canister ID resolution for reliable IC redeploy/shareable URL",
+  "title": "Valentine flow fixes: scratch-to-reveal completion + Gift 2 letter unfold/typing + Gift 4 scratch + updated Spin Wheel rewards and 5-spin summary",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Ensure the frontend build/deploy process does not reference any previous broken canister ID and provides clear redeploy guidance for producing a fresh, shareable IC URL.",
+      "summary": "Fix scratch-to-reveal canvas rendering so scratching visibly erases overlay reliably on mouse and touch across DPR and resizes.",
       "acceptanceCriteria": [
-        "A fresh canister ID is created and used for the deployment (the previous broken canister ID is not referenced).",
-        "The deployed URL loads the frontend successfully in a browser without showing “Canister ID Not Resolved” / Error 400.",
-        "A shareable URL is produced that includes a valid canister subdomain (e.g., https://<canister-id>.icp0.io/) and works when opened on another device/network."
+        "On desktop (mouse) and mobile (touch), dragging over the scratch area clearly removes/erases the overlay at the finger/cursor location.",
+        "Scratching works consistently regardless of devicePixelRatio (e.g., normal and retina screens) and after resize/orientation changes.",
+        "The scratch overlay is initially visible and does not render as a blank/transparent layer."
       ],
       "file_operations": [
         {
-          "path": "frontend/DEPLOYMENT_DRAFT_LINK.md",
-          "operation": "create",
-          "description": "Add a short redeploy checklist focused on producing a fresh canister ID and ensuring the frontend is configured to read the new ID at runtime (e.g., via /env.json and Vite env vars), so the shared URL resolves. Reference the app’s runtime canister-id resolution behavior and where to verify it after redeploy."
-        },
-        {
-          "path": "frontend/.env.example",
+          "path": "frontend/src/features/valentine/components/ScratchHeart.tsx",
           "operation": "modify",
-          "description": "Clarify the intended env var names and that values must come from the newly created deployment (do not paste/keep any previously broken canister ID). Keep user-facing text in English."
+          "description": "Fix canvas initialization and scratch coordinate mapping so the overlay draws opaque on first render and erases correctly under both mouse and touch. Ensure DPR scaling does not double-apply (avoid accumulated ctx.scale on re-init) and re-initialize cleanly on resize/orientation changes while keeping the overlay visible."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Make frontend backend-canister-ID resolution robust by correctly loading BACKEND_CANISTER_ID from /env.json with Vite env var fallbacks, avoiding TypeScript/runtime errors and failing gracefully when missing.",
+      "summary": "Add scratch completion threshold detection and transition into a final reveal state where the overlay is removed/disabled.",
       "acceptanceCriteria": [
-        "frontend/src/canisterId.ts no longer uses `await` in a non-async function; canister ID resolution compiles and runs correctly.",
-        "When env.json is present at /env.json, the frontend uses BACKEND_CANISTER_ID from that file; otherwise it falls back to VITE_BACKEND_CANISTER_ID or VITE_CANISTER_ID_BACKEND.",
-        "If no canister ID is available, the app fails gracefully with clear console output rather than a hard crash."
+        "The app detects when a sufficient percentage of the scratch overlay has been erased (threshold-based).",
+        "After the threshold is reached, the overlay no longer blocks the reveal (e.g., it is removed/disabled).",
+        "The reveal state shows: (1) a large pulsing heart, (2) many kiss particles that originate near the heart and float upward, and (3) the exact text \"Love you cutie 🥰😘\" under the heart."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/canisterId.ts",
+          "path": "frontend/src/features/valentine/components/ScratchHeart.tsx",
           "operation": "modify",
-          "description": "Refactor canister ID resolution to eliminate `await` in non-async functions by introducing an async initialization/loader for /env.json and a safe synchronous accessor that uses cached values and Vite env var fallbacks. Add clear console warnings/errors when no ID is available, without throwing uncaught errors at module-evaluation time."
+          "description": "Implement scratched-area percentage calculation (throttled to avoid performance issues) and a configurable completion threshold. When the threshold is reached, set a completed state and disable/remove the scratch overlay interaction so the reveal is fully visible."
         },
         {
-          "path": "frontend/src/main.tsx",
+          "path": "frontend/src/features/valentine/effects/useKissBurst.ts",
+          "operation": "create",
+          "description": "Create a lightweight hook to spawn repeated bursts of kiss particles that originate near a provided center point (in local container percent coordinates) and float upward, suitable for triggering on scratch completion."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Update scratch-to-reveal final visuals to a large pulsing heart, floating kiss bursts, and the exact message text \"Love you cutie 🥰😘\".",
+      "acceptanceCriteria": [
+        "The reveal message shown under the heart is exactly: \"Love you cutie 🥰😘\".",
+        "The heart is visually large and uses a continuous pulsing/heartbeat animation.",
+        "Kiss particles (💋) appear in bursts and float upward over the reveal state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/components/ScratchHeart.tsx",
           "operation": "modify",
-          "description": "Initialize runtime configuration early (before app render) so /env.json can be read when available and cached for later synchronous access. Ensure missing config does not hard-crash the app; leave clear console output for debugging redeploys."
+          "description": "Replace any existing reveal copy with the exact text \"Love you cutie 🥰😘\" and ensure the heart is large with a continuous pulsing animation. Trigger kiss bursts on completion using the new kiss-burst hook so particles originate near the heart and float upward in the reveal state."
         },
         {
-          "path": "frontend/src/config.ts",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Update the core configuration loader (provided by the core-infrastructure component) to use the improved canister-id resolution behavior, ensuring actor/config creation consistently points to the newly deployed backend canister. Verify the component's usage instructions before implementing."
+          "description": "Add/adjust only the minimal CSS utilities/classes needed for the scratch reveal (heart pulse emphasis if needed and kiss burst float styling) while keeping selectors scoped to the scratch feature to avoid affecting other pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Gift 2 letter: ensure click-to-unfold animation plays before typing begins, and letter content types out progressively.",
+      "acceptanceCriteria": [
+        "Before opening, Gift 2 shows a clear click-to-unfold interaction for the letter.",
+        "Typing does not start until after the unfold/open animation completes.",
+        "Once opened, the letter content appears progressively via a typewriter/typing animation (not all at once)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/components/EnvelopeLetter.tsx",
+          "operation": "modify",
+          "description": "Ensure the envelope uses the correct open/opening state classes and that the 'opened' callback fires after the visual unfold/open animation completes (prefer animation/transition completion over a fixed timeout where feasible)."
         },
         {
-          "path": "frontend/src/hooks/useActor.ts",
+          "path": "frontend/src/features/valentine/screens/Gift2MessageScreen.tsx",
           "operation": "modify",
-          "description": "Add a guard so actor creation does not proceed when the backend canister ID is missing/empty; instead return a null actor state and log a clear console message. This prevents runtime crashes and makes misconfiguration obvious after deployment."
+          "description": "Wire Gift 2 so the typewriter effect is enabled only after the envelope open animation completion callback, preserving the existing letter content and overall layout."
         },
         {
-          "path": "frontend/src/hooks/useInternetIdentity.ts",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Ensure config loading for Internet Identity initialization remains compatible with the updated runtime config/canister-id loading (e.g., handle config-load errors gracefully and avoid cascading failures when canister ID is temporarily unavailable)."
+          "description": "Define/adjust the envelope container and flap/body/letter styles and the open/unfold animation classes used by EnvelopeLetter, keeping changes limited to the Gift 2 envelope classes so other screens remain unchanged."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Ensure Gift 4 exists after Gift 3 and uses the same scratch-to-reveal behavior and updated reveal content.",
+      "acceptanceCriteria": [
+        "The navigation/flow order includes Gift 4 directly after Gift 3.",
+        "Gift 4 contains a scratch-to-reveal area that uses the same completion/reveal behavior as the fixed scratch feature.",
+        "Upon scratch completion, Gift 4 shows the pulsing heart, floating kisses, and the exact text \"Love you cutie 🥰😘\"."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/content/flowOrder.ts",
+          "operation": "modify",
+          "description": "Confirm and enforce that the sequential flow order places 'gift4' directly after 'gift3' (and before the next screen), without changing any other flow positions."
+        },
+        {
+          "path": "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx",
+          "operation": "modify",
+          "description": "Update Gift 4 to use the fixed ScratchHeart completion/reveal behavior and remove any now-redundant scratch-start-only effects so kisses and reveal visuals are driven by scratch completion as specified."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Spin the Wheel: show the exact pre-spin note text before controls and enforce exactly 5 attempts.",
+      "acceptanceCriteria": [
+        "The note is displayed before spinning controls and reads exactly: \"You will get 5 attempts! Whatever you win from the spins… I will give you ALL of them in real 😩💕\"",
+        "The wheel allows exactly 5 spins; attempts decrement by 1 per completed spin.",
+        "When attempts reach 0, the UI prevents additional spins."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+          "operation": "modify",
+          "description": "Replace the current attempts note with the exact required text and ensure it is placed before the wheel/controls. Keep attempts strictly limited to 5 and ensure both UI disabling and spin handler guards prevent spinning at 0."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Spin the Wheel: replace rewards with the provided 11 rewards and show the exact message for the selected reward.",
+      "acceptanceCriteria": [
+        "The wheel segments display the updated reward labels and emojis.",
+        "After a spin, the reward display shows the selected reward’s exact message for that reward.",
+        "No removed rewards (Date Night, Massage, Movie Night) appear anywhere in the wheel options."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+          "operation": "modify",
+          "description": "Update the REWARDS list to exactly the 11 provided rewards (labels/emojis/messages) and ensure the post-spin reward panel displays the exact message for every reward. Remove any old rewards and any references to removed items."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "If needed, adjust only wheel-segment text sizing/rotation styling to accommodate the updated labels while keeping the wheel layout and styling consistent with the current page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "After 5 spins, transition to a final summary view listing all 5 won rewards and showing the exact sweet message.",
+      "acceptanceCriteria": [
+        "After the 5th completed spin, the UI transitions to a final summary view/page.",
+        "The summary displays all 5 won rewards from that session.",
+        "The summary includes the exact text (including line breaks as appropriate): \"Hey these are your rewards CUTIEPIE 💞\\nTake a screenshot and send me…\\nI will give you ALL 😘😘😘\"."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+          "operation": "modify",
+          "description": "Ensure the summary view is shown immediately after the 5th completed spin, lists exactly the 5 rewards won in that session, and renders the provided message text exactly (with explicit line breaks) using whitespace-preserving rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Keep all unrelated pages/design/layout unchanged; scope changes strictly to scratch behavior/visuals, Gift 2 letter behavior, Gift 4 placement/content, and Spin Wheel text/rewards/summary.",
+      "acceptanceCriteria": [
+        "All existing screens unrelated to the requested changes remain visually and behaviorally unchanged.",
+        "No unrelated copy/text strings are modified.",
+        "No backend behavior is introduced or required for these updates."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/valentine/components/ScratchHeart.tsx",
+          "operation": "modify",
+          "description": "Scope scratch fixes to this component only (no global behavior changes) and avoid touching unrelated UI. Ensure the component API changes (if any) are only consumed by the Gift 4 scratch screen."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Keep CSS changes narrowly scoped to the scratch and Gift 2 envelope classes (no broad resets or global typography/layout changes) to preserve all other screens exactly as-is."
         }
       ]
     }

@@ -16,8 +16,8 @@ export function CuddleHugScreen({ onNavigate }: CuddleHugScreenProps) {
         <div className="my-4">
           <ValentineGif
             src={ASSETS.cuddleHugGif}
-            alt="Cuddle and Hug GIF"
-            fallbackText={STRINGS.cuddleHugGifFallback}
+            alt="Apoorva and Shiva"
+            fallbackText={STRINGS.cuddleHugFallback}
           />
         </div>
         

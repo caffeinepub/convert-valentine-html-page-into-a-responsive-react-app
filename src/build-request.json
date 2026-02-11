@@ -1,72 +1,191 @@
 {
   "kind": "build_request",
-  "title": "Create a brand-new IC canister and redeploy to fix “Canister ID Not Resolved”",
+  "title": "Fix scratch-to-reveal heart + enhance Gift 2 letter + add/update Gift 4 + update Spin Wheel rewards and 5-spin summary",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
-      "target": "both",
+      "text": "Fix the existing scratch-to-reveal canvas so scratching visibly erases the overlay and reliably reveals the content underneath on both mouse and touch devices.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-user-1"
         ],
         "quotes": [
-          "Create a new brand new canister",
-          "You are mad 😡 just give me my draft link to share to my partner and that's enough",
-          "Opening the shared app URL returns “Canister ID Not Resolved”; requires creating a brand-new canister and redeploying to get a valid URL."
+          "Fix Scratch-to-Reveal Feature\nI already added a “Scratch Me” area but nothing shows.\nPlease fix this so it becomes fully functional."
         ]
       },
       "acceptanceCriteria": [
-        "A fresh canister ID is created and used for the deployment (the previous broken canister ID is not referenced).",
-        "The deployed URL loads the frontend successfully in a browser without showing “Canister ID Not Resolved” / Error 400.",
-        "A shareable URL is produced that includes a valid canister subdomain (e.g., https://<canister-id>.icp0.io/) and works when opened on another device/network."
+        "On desktop (mouse) and mobile (touch), dragging over the scratch area clearly removes/erases the overlay at the finger/cursor location.",
+        "Scratching works consistently regardless of devicePixelRatio (e.g., normal and retina screens) and after resize/orientation changes.",
+        "The scratch overlay is initially visible and does not render as a blank/transparent layer."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+      "text": "Implement a scratch-completion threshold for the scratch-to-reveal feature; once the user scratches enough area, transition to the final reveal state.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-user-1"
         ],
         "quotes": [
-          "This will be automatically set during deployment",
-          "Opening the shared app URL returns “Canister ID Not Resolved”"
+          "When the user scratches enough area:\nA big beating heart ❤️ appears (pulsing animation)\nLots of kisses 💋 pop out from the heart and float upward\nShow this message under the heart:\n“Love you cutie 🥰😘”"
         ]
       },
       "acceptanceCriteria": [
-        "frontend/src/canisterId.ts no longer uses `await` in a non-async function; canister ID resolution compiles and runs correctly.",
-        "When env.json is present at /env.json, the frontend uses BACKEND_CANISTER_ID from that file; otherwise it falls back to VITE_BACKEND_CANISTER_ID or VITE_CANISTER_ID_BACKEND.",
-        "If no canister ID is available, the app fails gracefully with clear console output rather than a hard crash."
+        "The app detects when a sufficient percentage of the scratch overlay has been erased (threshold-based).",
+        "After the threshold is reached, the overlay no longer blocks the reveal (e.g., it is removed/disabled).",
+        "The reveal state shows: (1) a large pulsing heart, (2) many kiss particles that originate near the heart and float upward, and (3) the exact text \"Love you cutie 🥰😘\" under the heart."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the scratch-to-reveal reveal visuals to match the requested content: a large pulsing heart, kiss pop/floating animation, and the message text \"Love you cutie 🥰😘\" (replacing any existing reveal message text).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "A big beating heart ❤️ appears (pulsing animation)\nLots of kisses 💋 pop out from the heart and float upward\nShow this message under the heart:\n“Love you cutie 🥰😘”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The reveal message shown under the heart is exactly: \"Love you cutie 🥰😘\".",
+        "The heart is visually large and uses a continuous pulsing/heartbeat animation.",
+        "Kiss particles (💋) appear in bursts and float upward over the reveal state."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Gift 2: Ensure the letter content is displayed with a typing animation, and that a click-to-unfold (envelope opening) animation happens before typing begins.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Gift 2 – Letter Typing Animation\nAdd a typing animation for the letter content.\nThe letter should have a click-to-unfold animation before the typing starts."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Before opening, Gift 2 shows a clear click-to-unfold interaction for the letter.",
+        "Typing does not start until after the unfold/open animation completes.",
+        "Once opened, the letter content appears progressively via a typewriter/typing animation (not all at once)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Gift 4: Ensure there is a Gift 4 screen in the flow after Gift 3 that uses the same scratch-to-reveal effect and reveal content described (pulsing heart, floating kisses, and \"Love you cutie 🥰😘\" text).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Add Gift 4 Page\nCreate a new Gift 4 page after Gift 3.\nGift 4 content:\nSame scratch effect mentioned above:\nScratch screen\nBig beating heart ❤️\nKisses popping 💋\n“Love you cutie 🥰😘” text"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The navigation/flow order includes Gift 4 directly after Gift 3.",
+        "Gift 4 contains a scratch-to-reveal area that uses the same completion/reveal behavior as the fixed scratch feature.",
+        "Upon scratch completion, Gift 4 shows the pulsing heart, floating kisses, and the exact text \"Love you cutie 🥰😘\"."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Spin the Wheel page: Add the exact pre-spin note text before the wheel/controls, and keep the wheel limited to 5 attempts/spins.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Spin the Wheel Page – Updates\nAdd this note BEFORE spinning:\n“You will get 5 attempts! Whatever you win from the spins… I will give you ALL of them in real 😩💕”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The note is displayed before spinning controls and reads exactly: \"You will get 5 attempts! Whatever you win from the spins… I will give you ALL of them in real 😩💕\"",
+        "The wheel allows exactly 5 spins; attempts decrement by 1 per completed spin.",
+        "When attempts reach 0, the UI prevents additional spins."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Spin the Wheel page: Replace the wheel reward list by removing Date Night, Massage, and Movie Night, and using exactly the provided 11 rewards with their exact labels/emojis and messages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "NEW Reward List for the Wheel\nRemove: Date Night, Massage, Movie Night.\nReplace with these rewards:\n💋 Kiss Attack\nMessage: “Get ready for my unstoppable kiss attack 😚💋”\n🤗 Super Hug\nMessage: “I’m giving you the BIGGEST hug ever 😁❤️”\n🥰 Your Favourite Food\nMessage: “I’ll get you your FAVORITE food, babyy 😍🍽️”\n🎶 Song For You\nMessage: “I’ll sing or send you a cute romantic song 🎶💗”\n🌹 Cute Roses\nMessage: “Beautiful roses coming your way, my love 🌹💕”\n🍫 Chocolate Treat\nMessage: “Your sweet chocolate treat is on the way 😘🍫”\n💞 Love Note\nMessage: “I’ll write you the cutest love note ever 💌💞”\n🫦 Romance 😚\nMessage: “Get ready for some cute romance time with me 😚❤️‍🔥”\n💛 Cute Love Letter 💌\nMessage: “I’ll give you a handwritten cute love letter 💛💌”\n🎁 Mystery Surprise\nMessage: “You can ask me for ANY mystery gift you want babyyy 🎁✨”\n❤️ Forever Card\nMessage: “I’ll make you a ‘Forever with You’ card ❤️✨”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The wheel segments display the updated reward labels and emojis.",
+        "After a spin, the reward display shows the selected reward’s exact message for that reward.",
+        "No removed rewards (Date Night, Massage, Movie Night) appear anywhere in the wheel options."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "After all 5 spins, show a final reward summary page that lists all 5 rewards the user received and shows the provided sweet message exactly.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "After All 5 Spins\nShow a cute final reward summary page with:\nAll 5 rewards the user received\nA sweet message:\n“Hey these are your rewards CUTIEPIE 💞\nTake a screenshot and send me…\nI will give you ALL 😘😘😘”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After the 5th completed spin, the UI transitions to a final summary view/page.",
+        "The summary displays all 5 won rewards from that session.",
+        "The summary includes the exact text (including line breaks as appropriate): \"Hey these are your rewards CUTIEPIE 💞\\nTake a screenshot and send me…\\nI will give you ALL 😘😘😘\"."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Do not change any other pages, designs, animations, or layout outside of the updates explicitly requested (scratch-to-reveal behavior/visuals, Gift 2 letter behavior, Gift 4 content/placement, and Spin Wheel text/rewards/summary).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Do Not Change Anything Else\nKeep all other pages, designs, animations, and layout exactly the same."
+        ]
+      },
+      "acceptanceCriteria": [
+        "All existing screens unrelated to the requested changes remain visually and behaviorally unchanged.",
+        "No unrelated copy/text strings are modified.",
+        "No backend behavior is introduced or required for these updates."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in backend/main.mo (no multi-canister backend architecture).",
-    "Do not modify files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
-    "Use English for any user-facing text."
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Backend must remain single-actor; only add backend changes if strictly required (these updates should be frontend-only).",
+    "Keep all other pages, designs, animations, and layout exactly the same outside the requested updates."
   ],
   "nonGoals": [
-    "Adding new Valentine app features or changing existing Valentine flow content beyond what is required for deployment/canister-ID correctness.",
-    "Integrating third-party auth providers (only Internet Identity is supported).",
-    "Introducing external databases or non-Motoko backend services."
+    "Adding new authentication methods or third-party integrations.",
+    "Adding persistence or saving spin results across sessions/devices.",
+    "Redesigning the overall Valentine theme or changing existing layout structure on other screens."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
   },
   "userProfileUpdate": {
-    "goalsToAdd": [
-      "Obtain a working shareable draft/public URL for the deployed app by recreating the canister and redeploying."
-    ],
+    "goalsToAdd": [],
     "goalsToRemove": [],
     "preferencesToAdd": [],
     "preferencesToRemove": [],
-    "miscToAdd": [
-      "Current shared URL shows ICP gateway Error 400: “Canister ID Not Resolved” and must be fixed via a fresh canister ID + redeploy."
-    ],
+    "miscToAdd": [],
     "miscToRemove": [],
     "fieldsToSet": {},
     "fieldsToDelete": []

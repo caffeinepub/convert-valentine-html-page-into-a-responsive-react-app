@@ -2,11 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-brand-new-internet-computer-canister-do-not-reuse-the-existing-invalid-canister-id-and-redeploy-the-full-app-so-the-resulting-public-url-resolves-successfully-no-icp-gateway-canister-id-not-resolved-error-400-and-can-be-shared-as-a-working-draft-link",
-      "featureTitle": "Create a brand-new Internet Computer canister (do not reuse the existing/invalid canister ID) and redeploy the full app so the resulting public URL resolves successfully (no ICP gateway “Canister ID Not Resolved” / Error 400) and can be shared as a working draft link.",
+      "featureId": "feature-fix-the-existing-scratch-to-reveal-canvas-so-scratching-visibly-erases-the-overlay-and-reliably-reveals-the-content-underneath-on-both-mouse-and-touch-devices",
+      "featureTitle": "Fix the existing scratch-to-reveal canvas so scratching visibly erases the overlay and reliably reveals the content underneath on both mouse and touch devices.",
       "files": [
-        "frontend/.env.example",
-        "frontend/DEPLOYMENT_DRAFT_LINK.md"
+        "frontend/src/features/valentine/components/ScratchHeart.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,10 +20,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-fix-frontend-backend-canister-id-resolution-so-it-reliably-reads-the-deployed-backend-canister-id-from-env-json-and-or-vite-environment-variables-without-typescript-runtime-errors-ensuring-the-deployed-frontend-always-points-at-the-newly-created-backend-canister",
-      "featureTitle": "Fix frontend backend-canister-ID resolution so it reliably reads the deployed backend canister ID from env.json and/or Vite environment variables without TypeScript/runtime errors, ensuring the deployed frontend always points at the newly created backend canister.",
+      "featureId": "feature-implement-a-scratch-completion-threshold-for-the-scratch-to-reveal-feature-once-the-user-scratches-enough-area-transition-to-the-final-reveal-state",
+      "featureTitle": "Implement a scratch-completion threshold for the scratch-to-reveal feature; once the user scratches enough area, transition to the final reveal state.",
       "files": [
-        "frontend/src/canisterId.ts"
+        "frontend/src/features/valentine/components/ScratchHeart.tsx",
+        "frontend/src/features/valentine/effects/useKissBurst.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,6 +35,135 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-scratch-to-reveal-reveal-visuals-to-match-the-requested-content-a-large-pulsing-heart-kiss-pop-floating-animation-and-the-message-text-love-you-cutie-replacing-any-existing-reveal-message-text",
+      "featureTitle": "Update the scratch-to-reveal reveal visuals to match the requested content: a large pulsing heart, kiss pop/floating animation, and the message text \"Love you cutie 🥰😘\" (replacing any existing reveal message text).",
+      "files": [
+        "frontend/src/features/valentine/components/ScratchHeart.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-gift-2-ensure-the-letter-content-is-displayed-with-a-typing-animation-and-that-a-click-to-unfold-envelope-opening-animation-happens-before-typing-begins",
+      "featureTitle": "Gift 2: Ensure the letter content is displayed with a typing animation, and that a click-to-unfold (envelope opening) animation happens before typing begins.",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-gift-4-ensure-there-is-a-gift-4-screen-in-the-flow-after-gift-3-that-uses-the-same-scratch-to-reveal-effect-and-reveal-content-described-pulsing-heart-floating-kisses-and-love-you-cutie-text",
+      "featureTitle": "Gift 4: Ensure there is a Gift 4 screen in the flow after Gift 3 that uses the same scratch-to-reveal effect and reveal content described (pulsing heart, floating kisses, and \"Love you cutie 🥰😘\" text).",
+      "files": [
+        "frontend/src/features/valentine/screens/Gift4ScratchHeartScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-spin-the-wheel-page-add-the-exact-pre-spin-note-text-before-the-wheel-controls-and-keep-the-wheel-limited-to-5-attempts-spins",
+      "featureTitle": "Spin the Wheel page: Add the exact pre-spin note text before the wheel/controls, and keep the wheel limited to 5 attempts/spins.",
+      "files": [
+        "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-spin-the-wheel-page-replace-the-wheel-reward-list-by-removing-date-night-massage-and-movie-night-and-using-exactly-the-provided-11-rewards-with-their-exact-labels-emojis-and-messages",
+      "featureTitle": "Spin the Wheel page: Replace the wheel reward list by removing Date Night, Massage, and Movie Night, and using exactly the provided 11 rewards with their exact labels/emojis and messages.",
+      "files": [
+        "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-after-all-5-spins-show-a-final-reward-summary-page-that-lists-all-5-rewards-the-user-received-and-shows-the-provided-sweet-message-exactly",
+      "featureTitle": "After all 5 spins, show a final reward summary page that lists all 5 rewards the user received and shows the provided sweet message exactly.",
+      "files": [
+        "frontend/src/features/valentine/screens/SpinTheWheelOfLoveScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-do-not-change-any-other-pages-designs-animations-or-layout-outside-of-the-updates-explicitly-requested-scratch-to-reveal-behavior-visuals-gift-2-letter-behavior-gift-4-content-placement-and-spin-wheel-text-rewards-summary",
+      "featureTitle": "Do not change any other pages, designs, animations, or layout outside of the updates explicitly requested (scratch-to-reveal behavior/visuals, Gift 2 letter behavior, Gift 4 content/placement, and Spin Wheel text/rewards/summary).",
+      "files": [
+        "frontend/src/features/valentine/components/ScratchHeart.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
       ],
       "confidence": "high"
     }
